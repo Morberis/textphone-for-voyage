@@ -4,14 +4,19 @@
   "role": "public source and creator package",
   "files": [
     {
+      "path": ".gitattributes",
+      "bytes": 45,
+      "sha256": "87281b7fc1b6a009744ead7122bc753822fe7b0ea26bd7a9dd06fe4e83dcfc85"
+    },
+    {
       "path": ".gitignore",
-      "bytes": 71,
-      "sha256": "6a5f9544a8522cc32801a2c45fdc3db821b3241f6510339b5c59c6085ff90cc9"
+      "bytes": 64,
+      "sha256": "2726fa6880822b270810220884cc50c6780a0bdf432cd047b6b66d4246bbec87"
     },
     {
       "path": "API-REFERENCE.txt",
-      "bytes": 5842,
-      "sha256": "015dc61f0748645714044dd53688f2022b99ea16d9cbfe2393bff08a14707a7f"
+      "bytes": 5742,
+      "sha256": "36d5f328b86080b590af9560e0e7a1d037c30a5c8a1971ce93811f07e03000c1"
     },
     {
       "path": "build/generic-phone-installer.html",
@@ -25,18 +30,18 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 444,
-      "sha256": "789a3829dce6c43fd3c4c4f01d8c77ae7eef75fb0fe35645e844a7e77b3fd7e1"
+      "bytes": 439,
+      "sha256": "186c7eba1def2426b233547f61dc63605fe49b49d726b4b256592e5d5196b223"
     },
     {
       "path": "CLOCK-SETUP.txt",
-      "bytes": 2574,
-      "sha256": "b4fa7d4394ff7e7f4cf72acd250a55917052a68bfa4d965d5e235eb0a0a1795a"
+      "bytes": 2530,
+      "sha256": "e99793d313141c5fa4a9da6b8d64f9327bca3bdbb86f798dde705583f0d3e5c3"
     },
     {
       "path": "config/generic-phone.json",
-      "bytes": 4011,
-      "sha256": "0abbe8e7e88bc6328327b4d3e1c80ef960fa184f6c8ef114a0b88bf37c1723ad"
+      "bytes": 3888,
+      "sha256": "78c0b4d0355661795d190437210924cb0fe8e4e78b85fc1cd2a392c0379cfde3"
     },
     {
       "path": "docs/.nojekyll",
@@ -45,13 +50,13 @@
     },
     {
       "path": "docs/checklist.js",
-      "bytes": 428,
-      "sha256": "3d9d3c91456249897583204bae5241c0f91b901667e0ba90091f7588c23e67c3"
+      "bytes": 420,
+      "sha256": "07b53719b3c52cedcf03ccd48cc6912820e9c6880d97153636fa9bb97f19f64d"
     },
     {
       "path": "docs/index.html",
-      "bytes": 46712,
-      "sha256": "d58e503bf97aa382f6cf7065a7dc75443e2f025304c7309606c4be3011e5dd25"
+      "bytes": 46555,
+      "sha256": "90794e2a65fc778f323cb7006fb182cc6eaff377a3981a3e621db388c5b37333"
     },
     {
       "path": "docs/style.css",
@@ -60,13 +65,13 @@
     },
     {
       "path": "documentation/guide.json",
-      "bytes": 39147,
-      "sha256": "182886d5603dce73a1cb5c722b10372aadcedb507e39a49991646fc0067e611b"
+      "bytes": 38595,
+      "sha256": "cb96d146e537e1d80b5901c44e37c6aa9473db4a9f531884993f05578b55e7f5"
     },
     {
       "path": "documentation/site.json",
-      "bytes": 99,
-      "sha256": "e42ecfe969bcbea55affbcc5c3ebecb37f4e50b935e310b70c42f954af80d030"
+      "bytes": 95,
+      "sha256": "68c2ecf014423daad88ed63db472e8d95c604b5f101b48056ef061b89404f935"
     },
     {
       "path": "examples/complete-example-config.json",
@@ -115,13 +120,13 @@
     },
     {
       "path": "LICENSE",
-      "bytes": 1086,
-      "sha256": "e5abcf0979627c1a710415bcdf8a7c73e0507865de7ba06825273fa2d4e98b57"
+      "bytes": 1065,
+      "sha256": "b8046e92dbc0aa273ae50adebe18730365938e9db5c0a868f94b64c32cc480ca"
     },
     {
       "path": "narrator-bridge.txt",
-      "bytes": 744,
-      "sha256": "75c38cbb5549f231e34331a5463721fa82844ad6756c5b29ace3b0c36fdf6117"
+      "bytes": 742,
+      "sha256": "46897df2cb11a186d5e49557c4e903db2be5ea500a3d5af11190343725fcecaf"
     },
     {
       "path": "native/build-installer.mjs",
@@ -130,8 +135,8 @@
     },
     {
       "path": "native/build-mod.mjs",
-      "bytes": 7964,
-      "sha256": "0a4acd35cef7a382a8cae2f07f9623413b2e7aeeeb253aeb4300819f7614c39e"
+      "bytes": 7863,
+      "sha256": "34b8d4cd5cbcce06ac0cfadf36f2f1eb68e84303a528e16005bd9518ea7c634b"
     },
     {
       "path": "native/merge-world.mjs",
@@ -140,18 +145,18 @@
     },
     {
       "path": "package.json",
-      "bytes": 739,
-      "sha256": "c5adde96799f4adc2b6a3654473b75352029778e379045caed5e42dd28d139a3"
+      "bytes": 720,
+      "sha256": "da3464bec2a34b3e049658171663252327093c3f8e577a2454b1f0ce30c08c94"
     },
     {
       "path": "README.md",
-      "bytes": 2880,
-      "sha256": "c7907a90bcb1f5499fcbc2473b034b67baceda74876bc2225d7c0c3a67c3d6f8"
+      "bytes": 2841,
+      "sha256": "65fc814e22b991f7966d9155512b1f90f0a81cfdbcb43ad1aba3033b1dfafa93"
     },
     {
       "path": "README.txt",
-      "bytes": 4037,
-      "sha256": "6bff3ff90597776cd420c664db4be9bf804ef180754031d6fa72e4e674eaec37"
+      "bytes": 3962,
+      "sha256": "ea7506ab64467d4c9694ade6a0c9b9cc1647da11481d7d958a8aaf86f74ae224"
     },
     {
       "path": "src/merge-phone-world.mjs",
@@ -160,8 +165,8 @@
     },
     {
       "path": "src/mod-context.mjs",
-      "bytes": 5861,
-      "sha256": "90ed3020e292b6f778eed7aec681b0deaf70e666213e7a0965934068ab1a8440"
+      "bytes": 5776,
+      "sha256": "c7936e970f50b18af83032792e193b896a5cfc3037e631f414f0c80c62416efb"
     },
     {
       "path": "src/mod-delivery.mjs",
@@ -185,8 +190,8 @@
     },
     {
       "path": "src/mod-marketplace.mjs",
-      "bytes": 2221,
-      "sha256": "8afcdd6ffe0e3856cffdc0d52d1d064d8b6fa352108926b88a75728267564986"
+      "bytes": 2193,
+      "sha256": "f4755dd6661331905dd521562d00022fee3d4091e795019df9cae7aad75c928a"
     },
     {
       "path": "src/mod-services.mjs",
@@ -195,8 +200,8 @@
     },
     {
       "path": "src/phone-catalog-policy.mjs",
-      "bytes": 2171,
-      "sha256": "e38731d517b5d17d8d82837060a5cca76b68f3d3578386c65c94cbb8d6e66878"
+      "bytes": 2135,
+      "sha256": "e5923cad4ee9a6db9034cbb19145043cd76b3944614e02c34df8f378f59e3a66"
     },
     {
       "path": "src/phone-config-validation.mjs",
@@ -205,8 +210,8 @@
     },
     {
       "path": "src/phone-delivery-policy.mjs",
-      "bytes": 3893,
-      "sha256": "f4c6b86d42ac2fd832cd94a0114343c65f986e2b69fcedfdddceac00d27bb2ea"
+      "bytes": 3838,
+      "sha256": "8b1216005040da5e2af6777cf8dbea5332cd2cac60ad70bf87c62afd1c410fec"
     },
     {
       "path": "test/app-enablement.test.mjs",
@@ -215,13 +220,13 @@
     },
     {
       "path": "test/generic-native.test.mjs",
-      "bytes": 5598,
-      "sha256": "add961d072e066f2978805a3e9e3c018f11149edfeeaeda60bc1ece90523109e"
+      "bytes": 5555,
+      "sha256": "a1ff6d51a88326eab790cd157453acfd0feddb6d76eefd5df8bb29b05b000a7b"
     },
     {
       "path": "test/installer.test.mjs",
-      "bytes": 2060,
-      "sha256": "c95ccb7c3e8b8246aa3fe7e5c0d86aaaf523356f9b13c1ebb598199db8a48031"
+      "bytes": 2045,
+      "sha256": "bfe4377745e4e1cd3f8e3234bee7e8622ed9dfa8eaa09b1c7f69b6850a97f632"
     },
     {
       "path": "test/merge.test.mjs",
@@ -230,13 +235,13 @@
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "bytes": 472,
-      "sha256": "5c11eef0f599cf0bf595b16e3e81aac4bfcdf0035b2c1779b32fe882a7a9d373"
+      "bytes": 465,
+      "sha256": "f1fb865e9c3c4e3ff9c5031492561b8382d0dad2deacdba23be0c86edf042565"
     },
     {
       "path": "tools/build-guide.py",
-      "bytes": 486,
-      "sha256": "5c2a1201d137a9390581860491453ed2fda6f37b28db32adac7b0cdc1cea6591"
+      "bytes": 478,
+      "sha256": "b2e59e3c264205f34f96551f9305cd0ba42748167da3db8282b0c9606ac55dd2"
     },
     {
       "path": "tools/build-site.py",
@@ -245,13 +250,13 @@
     },
     {
       "path": "tools/pdf-renderer.py",
-      "bytes": 6575,
-      "sha256": "3a8bef8a6146599559129452a5a3a19fa866b8d105cd3cf6795a2a34dbcef84c"
+      "bytes": 6477,
+      "sha256": "b3f2c90b6551aa833b1712fa11be68a9b294bffac96aace37c7d1273dfcd01c6"
     },
     {
       "path": "VERIFICATION.txt",
-      "bytes": 7209,
-      "sha256": "f4950d627548f2fc5e01cca1c151ec8a474567cb77d2fc697685022dfe5b0e63"
+      "bytes": 7143,
+      "sha256": "11499fe1bfe3084938bfdee3d676f1ded986ff8ba14195a11c9493ceffa549e9"
     },
     {
       "path": "docs/downloads/Creator-Guide.pdf",
