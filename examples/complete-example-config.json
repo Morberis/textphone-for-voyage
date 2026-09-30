@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "columns": false,
+  "storeAppId": "store",
+  "initialInstalledIds": [
+    "messages",
+    "clock",
+    "maps",
+    "food",
+    "store"
+  ],
+  "apps": [
+    {
+      "id": "messages",
+      "label": "Messages",
+      "preferredShortcut": "M",
+      "order": 0,
+      "pages": [
+        {
+          "name": "Inbox",
+          "kind": "generated",
+          "guidance": "Show established messages and plausible incoming contacts consistent with relationships, schedules and privacy. Calls preserve each participant's physical location. Sending a message requires a player-authored choice."
+        }
+      ],
+      "summary": "Personal messages and contacts."
+    },
+    {
+      "id": "clock",
+      "label": "Clock",
+      "preferredShortcut": "C",
+      "order": 1,
+      "pages": [
+        {
+          "name": "Time",
+          "kind": "generated",
+          "guidance": "Display the established world date and time. Use the host calendar as authority. A turn counter is not an hour or date.",
+          "contextReader": "clock"
+        },
+        {
+          "name": "Alarms",
+          "kind": "generated",
+          "guidance": "List established alarms and appointments, or an empty list. Setting, editing or cancelling an alarm uses existing world rules after the player states their choice."
+        }
+      ],
+      "summary": "World time and personal reminders."
+    },
+    {
+      "id": "maps",
+      "label": "Maps",
+      "preferredShortcut": "G",
+      "order": 2,
+      "pages": [
+        {
+          "name": "Nearby",
+          "kind": "generated",
+          "guidance": "Show the current location and known nearby destinations. Mark uncertain routes. Viewing leaves the player in place.",
+          "contextReader": "location"
+        },
+        {
+          "name": "Directions",
+          "kind": "generated",
+          "guidance": "Ask which known destination the player wants, or show a route to their explicitly named destination. Travel requires a separate player decision.",
+          "contextReader": "location"
+        }
+      ],
+      "summary": "Nearby places and directions."
+    },
+    {
+      "id": "food",
+      "label": "Food Delivery",
+      "preferredShortcut": "D",
+      "order": 3,
+      "pages": [
+        {
+          "name": "Stores",
+          "kind": "directory",
+          "guidance": "Choose an eligible business."
+        },
+        {
+          "name": "Orders",
+          "kind": "generated",
+          "guidance": "Display only established orders and their recorded status, or an empty list."
+        }
+      ],
+      "openPage": "Stores",
+      "guidance": "Show item prices, fees, substitutions, dietary information when relevant, destination and estimated arrival before explicit confirmation. Respect stock, access, weather and delivery conditions. Browsing is not ordering.",
+      "directory": {
+        "heading": "Stores",
+        "contentLabel": "menu",
+        "currency": "world currency",
+        "storeListingMode": "all_public",
+        "entries": [
+          {
+            "id": "corner-cafe",
+            "label": "Corner Cafe",
+            "locationId": "Corner Cafe",
+            "public": true,
+            "description": "A neighborhood cafe serving tea, sandwiches and pastries."
+          }
+        ]
+      },
+      "delivery": {
+        "blockedLocations": [],
+        "blockedMessage": "Food Delivery cannot reach this address. Choose a public pickup point."
+      },
+      "summary": "Meals, groceries and daily essentials."
+    },
+    {
+      "id": "store",
+      "label": "App Store",
+      "preferredShortcut": "S",
+      "order": 4,
+      "pages": [],
+      "removable": false,
+      "summary": "Discover, install and remove phone apps."
+    },
+    {
+      "id": "transit",
+      "label": "Transit",
+      "order": 20,
+      "preferredShortcut": "T",
+      "summary": "Local routes and ticket requests.",
+      "pages": [
+        {
+          "name": "Routes",
+          "kind": "generated",
+          "guidance": "Show established nearby routes and fares.",
+          "contextReader": "location"
+        },
+        {
+          "name": "Request ticket",
+          "kind": "generated",
+          "startsActivity": true,
+          "guidance": "Ask for destination; quote fare; await confirmation."
+        }
+      ]
+    },
+    {
+      "id": "shop_link",
+      "label": "ShopLink",
+      "order": 21,
+      "preferredShortcut": "L",
+      "summary": "Local businesses, catalogues and delivery options.",
+      "pages": [
+        {
+          "name": "Stores",
+          "kind": "directory",
+          "guidance": "Choose an eligible business."
+        },
+        {
+          "name": "Orders",
+          "kind": "generated",
+          "guidance": "Show established orders or an empty list."
+        }
+      ],
+      "openPage": "Stores",
+      "guidance": "Show price, fee, destination and arrival estimate before the player confirms a purchase.",
+      "directory": {
+        "heading": "Stores",
+        "contentLabel": "catalogue",
+        "currency": "credits",
+        "storeListingMode": "known",
+        "entries": [
+          {
+            "id": "corner-cafe",
+            "label": "Corner Cafe",
+            "locationId": "Corner Cafe",
+            "public": true,
+            "description": "Tea, sandwiches and pastries."
+          },
+          {
+            "id": "harbour-cafe",
+            "label": "Harbour Cafe",
+            "locationId": "Harbour Cafe",
+            "public": true,
+            "description": "Breakfast and hot drinks by the docks."
+          }
+        ]
+      },
+      "delivery": {
+        "blockedMessage": "ShopLink cannot reach this building.",
+        "destinationRequiredMessage": "Choose a delivery address.",
+        "blockedLocations": [
+          {
+            "locationId": "Research Tower"
+          },
+          {
+            "locationId": "Research Tower",
+            "areaId": "secure-lab",
+            "message": "ShopLink - Use the public reception pickup point."
+          }
+        ]
+      }
+    },
+    {
+      "id": "signal_vault",
+      "label": "Signal Vault",
+      "order": 22,
+      "preferredShortcut": "V",
+      "appStoreVisibility": "triggered",
+      "summary": "Invitation-only messages from the relay network.",
+      "pages": [
+        {
+          "name": "Inbox",
+          "kind": "generated",
+          "guidance": "Show established relay messages or an empty inbox. Preserve sender identities, privacy and explicit player choices."
+        }
+      ]
+    }
+  ]
+}

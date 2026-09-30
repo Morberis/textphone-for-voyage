@@ -1,0 +1,15 @@
+{
+  "id": "signal_vault",
+  "label": "Signal Vault",
+  "order": 22,
+  "preferredShortcut": "V",
+  "appStoreVisibility": "triggered",
+  "summary": "Invitation-only messages from the relay network.",
+  "pages": [
+    {
+      "name": "Inbox",
+      "kind": "generated",
+      "guidance": "Show established relay messages or an empty inbox. Preserve sender identities, privacy and explicit player choices."
+    }
+  ]
+}

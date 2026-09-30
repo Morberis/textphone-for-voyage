@@ -1,0 +1,60 @@
+{
+  "id": "shop_link",
+  "label": "ShopLink",
+  "order": 21,
+  "preferredShortcut": "L",
+  "summary": "Local businesses, catalogues and delivery options.",
+  "pages": [
+    {
+      "name": "Stores",
+      "kind": "directory",
+      "guidance": "Choose an eligible business."
+    },
+    {
+      "name": "Orders",
+      "kind": "generated",
+      "guidance": "Show established orders or an empty list."
+    }
+  ],
+  "openPage": "Stores",
+  "guidance": "Show price, fee, destination and arrival estimate before the player confirms a purchase.",
+  "directory": {
+    "heading": "Stores",
+    "contentLabel": "catalogue",
+    "currency": "credits",
+    "storeListingMode": "curated",
+    "entries": [
+      {
+        "id": "corner-cafe",
+        "label": "Corner Cafe",
+        "locationId": "Corner Cafe",
+        "public": true,
+        "description": "Tea, sandwiches and pastries."
+      },
+      {
+        "id": "harbour-cafe",
+        "label": "Harbour Cafe",
+        "locationId": "Harbour Cafe",
+        "public": true,
+        "description": "Breakfast and hot drinks by the docks."
+      }
+    ],
+    "curatedIds": [
+      "corner-cafe"
+    ]
+  },
+  "delivery": {
+    "blockedMessage": "ShopLink cannot reach this building.",
+    "destinationRequiredMessage": "Choose a delivery address.",
+    "blockedLocations": [
+      {
+        "locationId": "Research Tower"
+      },
+      {
+        "locationId": "Research Tower",
+        "areaId": "secure-lab",
+        "message": "ShopLink - Use the public reception pickup point."
+      }
+    ]
+  }
+}

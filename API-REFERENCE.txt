@@ -1,0 +1,100 @@
+MODULAR PHONE INTERFACE 0.6.0 — API AND ARCHITECTURE
+
+Read the Creator Guide for configuration tables, commands and worked examples.
+This is a tested preview with model-mediated presentation limits.
+
+Build API
+  import {validateConfiguration, buildPhoneMod} from './native/build-mod.mjs';
+  validateConfiguration(config) returns config or throws on invalid input.
+  await buildPhoneMod(config) returns {triggers}. It does not mutate config.
+  The result is a PARTIAL MOD, not a full world or a save game.
+
+Merge API
+  import {mergePhoneWorld} from './src/merge-phone-world.mjs';
+  mergePhoneWorld(world, mod, bridge) returns {world, report}.
+  Inputs remain unchanged. The returned world replaces phone_mod_* records
+  and prepends the exact narrator bridge once. Other fields remain intact.
+  report contains replacedPhoneRecords, installedPhoneRecords,
+  preservedHostTriggers, locations, storyStarts, changes,
+  and existingSavesChanged:false.
+  A partial world, runtime save, conflicting bridge or invalid mod throws.
+
+Native runtime
+  Six recurring party-scope planning handlers: home, marketplace, services,
+  directory, delivery and follow-through. Configuration and directory chunks
+  are inert PHONE CONFIG comments parsed as JSON. No generated code is run.
+  The runtime uses storage, triggers, check, effects and log. It emits story
+  context; the Story model and renderer decide the actual visible output.
+  Native game systems own money, inventory, travel, quests and contracts.
+
+Identity and persistence
+  Exactly one action-text string and one player-level key are required.
+  playerKey = JSON.stringify(playerName), including its JSON quoting.
+  storage.phone_mod = {schemaVersion:1, players:{[playerKey]:phone}}.
+  phone includes installedIds, revealedIds, columns, screen, appId, page,
+  directory, shortcuts, revision and lastHandled.
+  screen is closed, home or app. directory is null or a saved list/menu
+  selection with listedIds and selectedId.
+  lastHandled is JSON.stringify([gameTick,actionText]); this prevents duplicate
+  navigation effects across handlers. It is not a transaction receipt.
+  Renaming a player changes the key. Multiplayer attribution is unsupported.
+
+Creator unlock API
+  storage.phone_mod_unlocks[playerKey][appId] = true
+  Reveals a triggered download next time that player's phone is processed.
+  It neither installs the app nor grants account/service permissions.
+  Reveals persist; later false does not revoke an already recorded reveal.
+  unlockKnownEntity is an alternative exact known-entity trigger source.
+
+Clock connection
+  Every app supports enabled:true/false; omitted means true.
+  Disabled apps and their data are omitted from the compiled mod.
+  App Store may also be disabled; its management commands then refuse.
+  Clock defaults to enabled:false in both profiles. See CLOCK-SETUP.txt.
+  Creators enable it after adding a suitable time system. LC alone does not
+  configure a connection. The native built-in clock is not script-readable.
+  Optional config.clockStorageKey names a compact public storage record.
+  A page with contextReader:'clock' includes up to1000serialized characters
+  of that record as context. The host owns updating it and the calendar.
+  contextReader:'location' reads party-location and party-area.
+  There is no direct inventory reader or device-availability requirement.
+
+App data contract
+  Required: id, label, unique integer order, pages.
+  Optional: enabled (boolean; default true), preferredShortcut, summary, guidance, openPage,
+  appStoreVisibility ('public' or 'triggered'), removable, unlockKnownEntity,
+  directory, delivery, and source-reference metadata.
+  Page: name, kind ('generated' or 'directory'), guidance; optional
+  startsActivity (generated only) and contextReader ('clock' or 'location').
+  openPage names an existing non-activity page. It can open a directory.
+  Directory: heading, contentLabel, currency, storeListingMode, entries;
+  curated mode also needs curatedIds. Each entry has id, label, locationId,
+  public:boolean and description. Native known-entity is not visit history.
+  Delivery: blockedLocations, optional blockedMessage and
+  destinationRequiredMessage. Rule: locationId, optional areaId and message.
+  Exact area rule wins over the whole-location rule; policies are per app.
+
+Commands (case-insensitive; app/page names match configured labels)
+  phone / phone home; close phone; phone store
+  phone layout single|paired; phone columns off|on
+  phone install APP NAME; phone uninstall APP NAME
+  phone open APP NAME; one displayed shortcut when Home is open
+  phone view PAGE; phone choose ACTIVITY PAGE
+  phone shops; phone business NAME; phone restaurant NAME
+  a listed directory number; Back / phone back; phone delivery check
+  Unregistered phone view details receive browse-only context in the current
+  app. Other invented commands are not guaranteed. Ordinary language can
+  continue a generated service interaction under host rules.
+
+Bounds and errors
+ 32apps,12pages/app,128businesses/app; app IDs lowercase ASCII up to48chars;
+ labels ASCII up to32chars; page names letters/spaces/hyphens up to40chars;
+ summaries one line up to160chars; app/page guidance up to1800chars each;
+ commands up to400chars; serialized generated triggers at most10000chars.
+ The aggregate trigger limit can be reached before individual field limits.
+ Build-time validation is authoritative for a configuration; preserve its
+ error text when troubleshooting. No dependencies or eval are required.
+
+See examples/README.txt and the PDF. Test state, emitted effects, visible
+output and native consequences separately. There is no guaranteed exact
+screen, transaction veto, authoritative order cache or alarm scheduler.

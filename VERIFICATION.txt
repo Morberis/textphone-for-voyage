@@ -1,0 +1,66 @@
+MODULAR PHONE INTERFACE0.6.0 — VERIFICATION
+
+Verification: controls and configuration
+
+Tested on production Voyage engine 36 with a Living Continuity host; Story DeepSeek 3.2, Character Moderate, State Ultra. Results concern this integration and configuration. They are not a guarantee for another model or world.
+
+Single / paired Home: Saved setting and exact emitted rows pass. Paired rows rendered correctly; later single-column requests sometimes still rendered paired. Visible behavior is inconsistent.
+
+Dynamic apps / shortcuts: Live install, remove and reinstall changed the registry. A new app whose preferred key was occupied received a different key; typing that key opened it.
+
+Protected apps: Core Store refusal displayed correctly. Custom removable:false retained the app, but narration falsely claimed uninstall, including after a placement retry.
+
+Known / public / curated: Controlled native lists exercised all three policies. Unknown businesses were filtered only in the known app; a separate public list and curated subset remained independent.
+
+Per-app delivery: Live blocked/unblocked apps and distinct refusal messages passed. Area-specific wording took precedence. Whole-location fallback and missing-address branches also passed offline.
+
+Hidden downloads: Live premature install refused; trigger grant made the download available; explicit install then succeeded. Immediate reveal narration was wrong. Known-entity reveal also passed offline.
+
+Custom activity pages: Live shortcut and phone choose routed the intended page. It waited for a choice, but invented an invalid contact and controls. Routing passes; generated choice quality is limited.
+
+Persistence: A fresh tab reopened the same saved game; layout, installed apps, reveals and shortcuts matched exactly.
+
+Clock / location adapters: Native time/location pages were exercised. Optional clockStorageKey passed offline; no direct structured LC clock adapter is configured in the supplied profile.
+
+Player layout commands are distinct from creator configuration options. Directory policy, protection, delivery and visibility are edited in configuration and rebuilt. Testing retains failed replies rather than counting correct script state as a complete visual pass.
+
+Verification: scope and remaining limits
+
+All nine world-profile apps and their configured pages were exercised. Trials covered messaging/jobs/calls, time/alarms, maps/directions, food menus/orders, shopping browse/cart/orders/stores, social profiles/messages, responder listings/hiring inquiries and restricted marketplace account/listings. Browsing and explicit follow-up were checked separately.
+
+Two quote-to-confirmation purchase trials produced the expected native currency deductions only after explicit confirmation. No automatic job acceptance or responder hire was established in those browse/inquiry trials. Delivery arrival, long-term order memory, alarm firing, relationship outcomes and the complete employment lifecycle are host gameplay, not proven by these tests.
+
+Observed model failures include omitted screens, retained paired rows after a single-column request, false removal notices, lost field labels, invented alarm defaults, unauthored account routes, invented controls and a wrong app inventory description that survived reinstall. A requested tracking quest was not created. No atomic transaction guard or authoritative generated ledger is provided.
+
+The final source passes 72 offline checks: 23 current native-script checks, three complete-export merge checks, two synthetic installer-event checks and 44 retained prototype/component checks. The distributed generic package contains 11 relevant checks; the world package contains 28. The older 44 checks are historical evidence, not proof of the current native display.
+
+The complete-export merge route was applied to the private test world and its complete saved JSON matched the generated result after reload. Existing host content was preserved. The same merge code and generic profile were tested offline. Native Mods → Apply and public mod publication were not validated.
+
+The local HTML installer's merge logic and event flow passed synthetic checks. Browser policy blocked opening its local file in the authoring environment, so its live browser interface was not verified. The command-line route uses the same tested merger. A requested narrow viewport did not change the observed browser dimensions; mobile wrapping remains unverified.
+
+Multiplayer attribution is unsupported. The adapter leaves phone state unchanged when there is not exactly one attributable player; independent-name offline checks do not establish multiplayer support. Older phone saves are not automatically migrated. Revalidate after changing the host instructions, model, routing, catalogue or platform renderer.
+
+Use this as a configurable narrative interface with known presentation limits. Exact visible output and durable service records require further platform/host integration; those guarantees are not implied by the package.
+
+Vanilla compatibility and hidden Clock
+
+September 30, 2026: the distributed complete-export merger was applied to a fresh vanilla remix of source revision 176. The native saved full world matched the prepared output. All 63 host triggers, 227 locations and 19 starts were preserved; 23 phone records and the exact narrator prefix were added.
+
+The new single-player vanilla save used Sonnet 4.5 Story with High character and state settings. This trial used the predecessor hidden-download configuration. The new master enabled switch is tested offline only; no native deployment or visual guarantee for it is claimed.
+
+Initial Home displayed the four configured apps without Clock. An explicit phone install Clock request was refused in the saved registry and emitted Story instruction, but narration falsely claimed installation. The next Home repeated the invented Clock icon. Hiding an app controls the registry, not every sentence the model may generate.
+
+The release has 36 world-package checks and 17 generic-package checks, including every app independently off, all apps off, App Store off, stale active selection, invalid flags and reveal resistance. Source configurations remain editable; generated artifacts include only enabled apps.
+
+Installation/readback: Pass: exact host preservation and saved-output equality.
+
+Hidden Clock state: Pass: absent from initial installed IDs and unrevealed download catalogue.
+
+Hidden Clock visible refusal: Fail: narration claimed success despite refusal; Home carried it forward.
+
+Creator enablement: Offline verified for both profiles. Live time accuracy/adapter not tested.
+
+Other vanilla coverage: Meal directory and numbered menu selection worked; a permitted shopping-app installation opened its correct service menu. Final native state retained the installation, unchanged currency and one phone inventory item. Other service consequences were not retested here.
+
+Native Mods > Apply, automatic save migration and multiplayer remain unverified or unsupported as stated. No new alarm scheduler or access to Voyage's native clock is provided.
+

@@ -1,0 +1,44 @@
+APP ON/OFF AND CLOCK SETUP - 0.6.0
+
+In config/PROFILE-phone.json, every app has an enabled flag.
+  enabled: false -> omitted from the built mod, including its app-specific
+  instructions and directory data. No install or reveal can activate it.
+  enabled: true (or omitted) -> participate using its other settings.
+
+These settings have separate purposes:
+  enabled: creator decides whether the mod includes this app at all.
+  initialInstalledIds: which enabled apps start installed in a fresh game.
+  appStoreVisibility: public download, or triggered until a story reveal.
+  removable: whether a player can uninstall an enabled installed app.
+  directory.storeListingMode: which businesses appear inside that app.
+
+Examples:
+  Turn Maps off: set its enabled to false. Its old initialInstalledIds entry
+  can remain; the builder filters it while disabled. Re-enable to restore
+  that starting choice in NEW saves.
+  Optional downloadable app: enabled true, visibility public, no initial ID.
+  Secret app: enabled true, visibility triggered, no initial ID; use a reveal.
+  Disable App Store: set its enabled to false. Home omits the Store control;
+  phone store and install/remove requests explain it is disabled. Enabled
+  preinstalled apps remain usable. Players cannot manage installations with
+  the Store disabled. Re-enable it to restore those commands.
+
+Clock defaults to enabled false; other supplied apps default to true.
+To offer Clock after connecting a suitable time system, change enabled to
+true. Its default public visibility then permits downloading. Also add clock
+to initialInstalledIds if it should be installed at the start of NEW games.
+For a story unlock instead, set visibility triggered and use the reveal API.
+
+clockStorageKey reads only a creator-provided custom storage record, never
+Voyage's built-in clock. LC alone does not configure that connection.
+The host owns updating the time record and executing alarms.
+
+After any edit, rebuild BOTH mod JSON and HTML installer, merge into a test
+world, save/read back, and create a fresh test save. World edits do not
+automatically migrate existing saves. If a save is explicitly updated with
+new scripts, missing app IDs are pruned when its phone is next processed;
+reenabling does not reinstall an app removed from that existing registry.
+
+This controls module data and routing, not every narrator sentence or the
+world's independent lore/services. Native testing found narration could
+claim a hidden app installed despite a correct refusal in saved state.

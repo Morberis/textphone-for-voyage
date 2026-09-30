@@ -1,0 +1,21 @@
+{
+  "id": "transit",
+  "label": "Transit",
+  "order": 20,
+  "preferredShortcut": "T",
+  "summary": "Local routes and ticket requests.",
+  "pages": [
+    {
+      "name": "Routes",
+      "kind": "generated",
+      "guidance": "Show established nearby routes and fares.",
+      "contextReader": "location"
+    },
+    {
+      "name": "Request ticket",
+      "kind": "generated",
+      "startsActivity": true,
+      "guidance": "Ask for destination; quote fare; await confirmation."
+    }
+  ]
+}

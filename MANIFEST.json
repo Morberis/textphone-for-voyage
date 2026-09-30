@@ -1,0 +1,262 @@
+{
+  "project": "textphone-for-voyage",
+  "version": "0.6.0",
+  "role": "public source and creator package",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 71,
+      "sha256": "6a5f9544a8522cc32801a2c45fdc3db821b3241f6510339b5c59c6085ff90cc9"
+    },
+    {
+      "path": "API-REFERENCE.txt",
+      "bytes": 5842,
+      "sha256": "015dc61f0748645714044dd53688f2022b99ea16d9cbfe2393bff08a14707a7f"
+    },
+    {
+      "path": "build/generic-phone-installer.html",
+      "bytes": 63834,
+      "sha256": "5811cc09524d6a070826d39fd47c4902d141925ef9e0dfca1074e563a235ea30"
+    },
+    {
+      "path": "build/generic-phone-mod.json",
+      "bytes": 56477,
+      "sha256": "4db6ab9d2cff7b9065133123054948e4608ad00322c8b640af5fc1aca706fe45"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 444,
+      "sha256": "789a3829dce6c43fd3c4c4f01d8c77ae7eef75fb0fe35645e844a7e77b3fd7e1"
+    },
+    {
+      "path": "CLOCK-SETUP.txt",
+      "bytes": 2574,
+      "sha256": "b4fa7d4394ff7e7f4cf72acd250a55917052a68bfa4d965d5e235eb0a0a1795a"
+    },
+    {
+      "path": "config/generic-phone.json",
+      "bytes": 4011,
+      "sha256": "0abbe8e7e88bc6328327b4d3e1c80ef960fa184f6c8ef114a0b88bf37c1723ad"
+    },
+    {
+      "path": "docs/.nojekyll",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/checklist.js",
+      "bytes": 428,
+      "sha256": "3d9d3c91456249897583204bae5241c0f91b901667e0ba90091f7588c23e67c3"
+    },
+    {
+      "path": "docs/index.html",
+      "bytes": 46712,
+      "sha256": "d58e503bf97aa382f6cf7065a7dc75443e2f025304c7309606c4be3011e5dd25"
+    },
+    {
+      "path": "docs/style.css",
+      "bytes": 2409,
+      "sha256": "3c4bed144310e47fda3d3daa961129f398f237d841156fd229074127d434228d"
+    },
+    {
+      "path": "documentation/guide.json",
+      "bytes": 39147,
+      "sha256": "182886d5603dce73a1cb5c722b10372aadcedb507e39a49991646fc0067e611b"
+    },
+    {
+      "path": "documentation/site.json",
+      "bytes": 99,
+      "sha256": "e42ecfe969bcbea55affbcc5c3ebecb37f4e50b935e310b70c42f954af80d030"
+    },
+    {
+      "path": "examples/complete-example-config.json",
+      "bytes": 6526,
+      "sha256": "51de4298d77852a3a1c86f4fd368588aefa12855050e82ee945e5e888603e5c7"
+    },
+    {
+      "path": "examples/hidden-app.json",
+      "bytes": 415,
+      "sha256": "c11a0d2dc2bb0a7c048a8f064e96757d71960412167bce6d6e61358c3052e115"
+    },
+    {
+      "path": "examples/README.txt",
+      "bytes": 3584,
+      "sha256": "543375550674f2a2ee01bbdaa3a02703cbcbcb3fef971a56ee06b0077c5c3a4c"
+    },
+    {
+      "path": "examples/reveal-trigger.json",
+      "bytes": 660,
+      "sha256": "55c3ea5805ccdf69aac946d064b0294c0fc1085c22e2f5cc53349b5d7d969037"
+    },
+    {
+      "path": "examples/store-all_public.json",
+      "bytes": 1504,
+      "sha256": "5b48e671d683763a821784259d902cbe4e966427c14e1bd08b660adbf5fe5cf3"
+    },
+    {
+      "path": "examples/store-app.json",
+      "bytes": 1499,
+      "sha256": "fa6655d4addf8538f21908cbeebba74b66ba105f26dabd807e27393c17ea7a29"
+    },
+    {
+      "path": "examples/store-curated.json",
+      "bytes": 1548,
+      "sha256": "45b15f5464b4dab700706ba0a038d766e52e05f737bf07949b4f282be7070ba3"
+    },
+    {
+      "path": "examples/store-known.json",
+      "bytes": 1499,
+      "sha256": "fa6655d4addf8538f21908cbeebba74b66ba105f26dabd807e27393c17ea7a29"
+    },
+    {
+      "path": "examples/transit-app.json",
+      "bytes": 490,
+      "sha256": "4fd1f1da6932d55aa7493673a9a64c484082d2d5103afa534ae8f0f9f4189be4"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1086,
+      "sha256": "e5abcf0979627c1a710415bcdf8a7c73e0507865de7ba06825273fa2d4e98b57"
+    },
+    {
+      "path": "narrator-bridge.txt",
+      "bytes": 744,
+      "sha256": "75c38cbb5549f231e34331a5463721fa82844ad6756c5b29ace3b0c36fdf6117"
+    },
+    {
+      "path": "native/build-installer.mjs",
+      "bytes": 5743,
+      "sha256": "ac7afbba47c57175c0f131538fe75e69d9f002d9743d175ec1b00232b084ff75"
+    },
+    {
+      "path": "native/build-mod.mjs",
+      "bytes": 7964,
+      "sha256": "0a4acd35cef7a382a8cae2f07f9623413b2e7aeeeb253aeb4300819f7614c39e"
+    },
+    {
+      "path": "native/merge-world.mjs",
+      "bytes": 851,
+      "sha256": "245f978748b46ddbbeb3a1d2a6880deb71fa747cd521a5b8518b85ca032c9b74"
+    },
+    {
+      "path": "package.json",
+      "bytes": 739,
+      "sha256": "c5adde96799f4adc2b6a3654473b75352029778e379045caed5e42dd28d139a3"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2880,
+      "sha256": "c7907a90bcb1f5499fcbc2473b034b67baceda74876bc2225d7c0c3a67c3d6f8"
+    },
+    {
+      "path": "README.txt",
+      "bytes": 4037,
+      "sha256": "6bff3ff90597776cd420c664db4be9bf804ef180754031d6fa72e4e674eaec37"
+    },
+    {
+      "path": "src/merge-phone-world.mjs",
+      "bytes": 3242,
+      "sha256": "78ed6c7ea36aedeafaa8f1a717ff59fb6226e0132d86e9f1b8bf3a78916319b0"
+    },
+    {
+      "path": "src/mod-context.mjs",
+      "bytes": 5861,
+      "sha256": "90ed3020e292b6f778eed7aec681b0deaf70e666213e7a0965934068ab1a8440"
+    },
+    {
+      "path": "src/mod-delivery.mjs",
+      "bytes": 821,
+      "sha256": "19bc8d4381a1ec8e8893d6b8b60b73e36940b7aa3f82860f5a4dd2e496048a06"
+    },
+    {
+      "path": "src/mod-directory.mjs",
+      "bytes": 3900,
+      "sha256": "51d1155089b46b7e7cc56dabdf5ddd88da9b74b3d87c0831e00ed896dc87f102"
+    },
+    {
+      "path": "src/mod-follow-through.mjs",
+      "bytes": 2757,
+      "sha256": "86bfb9880d0dcd5012363f9cb63695d27af66f7864eb6f8c1fecf8d1547bc041"
+    },
+    {
+      "path": "src/mod-home.mjs",
+      "bytes": 1248,
+      "sha256": "53991c325b26f01ba640aeda4fddf8ef6585e7fe2256e115dda9bfeaa446ad10"
+    },
+    {
+      "path": "src/mod-marketplace.mjs",
+      "bytes": 2221,
+      "sha256": "8afcdd6ffe0e3856cffdc0d52d1d064d8b6fa352108926b88a75728267564986"
+    },
+    {
+      "path": "src/mod-services.mjs",
+      "bytes": 2736,
+      "sha256": "a70334bd91d7dd22b6676b6cdb7d96ab2d0908407277972d9eac189354f1bc01"
+    },
+    {
+      "path": "src/phone-catalog-policy.mjs",
+      "bytes": 2171,
+      "sha256": "e38731d517b5d17d8d82837060a5cca76b68f3d3578386c65c94cbb8d6e66878"
+    },
+    {
+      "path": "src/phone-config-validation.mjs",
+      "bytes": 807,
+      "sha256": "0074d8b0742863d6255927e63891929684ed4ddc7b742d55f65b13862f7d8892"
+    },
+    {
+      "path": "src/phone-delivery-policy.mjs",
+      "bytes": 3893,
+      "sha256": "f4c6b86d42ac2fd832cd94a0114343c65f986e2b69fcedfdddceac00d27bb2ea"
+    },
+    {
+      "path": "test/app-enablement.test.mjs",
+      "bytes": 4740,
+      "sha256": "eae0f09f501825ad0047408d24882532f04110b98ca12097d5dccbdc22078ca0"
+    },
+    {
+      "path": "test/generic-native.test.mjs",
+      "bytes": 5598,
+      "sha256": "add961d072e066f2978805a3e9e3c018f11149edfeeaeda60bc1ece90523109e"
+    },
+    {
+      "path": "test/installer.test.mjs",
+      "bytes": 2060,
+      "sha256": "c95ccb7c3e8b8246aa3fe7e5c0d86aaaf523356f9b13c1ebb598199db8a48031"
+    },
+    {
+      "path": "test/merge.test.mjs",
+      "bytes": 2612,
+      "sha256": "73213de2c37748f2334f4b1e65eb259e250a15e60b2c16f73f0f831d5f517308"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 472,
+      "sha256": "5c11eef0f599cf0bf595b16e3e81aac4bfcdf0035b2c1779b32fe882a7a9d373"
+    },
+    {
+      "path": "tools/build-guide.py",
+      "bytes": 486,
+      "sha256": "5c2a1201d137a9390581860491453ed2fda6f37b28db32adac7b0cdc1cea6591"
+    },
+    {
+      "path": "tools/build-site.py",
+      "bytes": 4124,
+      "sha256": "e3b394c281b671814558c84f1c359662713a43175b0b8c5e744c1f6f846453d3"
+    },
+    {
+      "path": "tools/pdf-renderer.py",
+      "bytes": 6575,
+      "sha256": "3a8bef8a6146599559129452a5a3a19fa866b8d105cd3cf6795a2a34dbcef84c"
+    },
+    {
+      "path": "VERIFICATION.txt",
+      "bytes": 7209,
+      "sha256": "f4950d627548f2fc5e01cca1c151ec8a474567cb77d2fc697685022dfe5b0e63"
+    },
+    {
+      "path": "docs/downloads/Creator-Guide.pdf",
+      "bytes": 164111,
+      "sha256": "bbee1c785e572771a643f086b8c46a7a604876b0839119e04e8638eabdc3a9b3"
+    }
+  ]
+}

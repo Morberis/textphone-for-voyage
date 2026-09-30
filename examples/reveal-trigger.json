@@ -1,0 +1,15 @@
+{
+  "name": "Reveal Signal Vault after relay restoration",
+  "scope": "party",
+  "phase": "state",
+  "recurring": false,
+  "conditions": [
+    {
+      "type": "quests-completed",
+      "operator": "contains",
+      "value": "Restore the Relay"
+    }
+  ],
+  "effects": [],
+  "script": "const players = Object.keys(check({type: 'player-level'}) || {});\nif (players.length !== 1) {\n  skip = true;\n} else {\n  const playerKey = JSON.stringify(players[0]);\n  storage.phone_mod_unlocks = storage.phone_mod_unlocks || {};\n  const grants = storage.phone_mod_unlocks;\n  grants[playerKey] = grants[playerKey] || {};\n  grants[playerKey].signal_vault = true;\n}"
+}

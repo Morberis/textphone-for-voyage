@@ -1,0 +1,12 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {mergePhoneWorld} from '../src/merge-phone-world.mjs';
+const [sourcePath,modPath,outputPath]=process.argv.slice(2);
+if(!sourcePath||!modPath||!outputPath)throw Error('Usage: node native/merge-world.mjs ORIGINAL.json PHONE-MOD.json NEW-WORLD.json');
+if(path.resolve(sourcePath)===path.resolve(outputPath))throw Error('Choose a new output filename; preserve the original export.');
+const original=JSON.parse(await fs.readFile(sourcePath,'utf8'));
+const mod=JSON.parse(await fs.readFile(modPath,'utf8'));
+const bridge=await fs.readFile(new URL('../narrator-bridge.txt',import.meta.url),'utf8');
+const merged=mergePhoneWorld(original,mod,bridge);
+await fs.writeFile(outputPath,JSON.stringify(merged.world,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify(merged.report,null,2));
