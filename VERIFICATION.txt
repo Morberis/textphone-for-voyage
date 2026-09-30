@@ -32,7 +32,7 @@ Two quote-to-confirmation purchase trials produced the expected native currency 
 
 Observed model failures include omitted screens, retained paired rows after a single-column request, false removal notices, lost field labels, invented alarm defaults, unauthored account routes, invented controls and a wrong app inventory description that survived reinstall. A requested tracking quest was not created. No atomic transaction guard or authoritative generated ledger is provided.
 
-The final source passes 72 offline checks: 23 current native-script checks, three complete-export merge checks, two synthetic installer-event checks and 44 retained prototype/component checks. The distributed generic package contains 11 relevant checks; the world package contains 28. The older 44 checks are historical evidence, not proof of the current native display.
+The final source passes 72 offline checks: 23 current native-script checks, three complete-export merge checks, two synthetic installer-event checks and 44 retained prototype/component checks. Those counts were historical. Current repositories contain 19 generic checks and 38 customized checks, including two readback verifier checks. The older 44 checks are historical evidence, not proof of the current native display.
 
 The complete-export merge route was applied to the private test world and its complete saved JSON matched the generated result after reload. Existing host content was preserved. The same merge code and generic profile were tested offline. Native Mods → Apply and public mod publication were not validated.
 
@@ -50,7 +50,7 @@ The new single-player vanilla save used Sonnet 4.5 Story with High character and
 
 Initial Home displayed the four configured apps without Clock. An explicit phone install Clock request was refused in the saved registry and emitted Story instruction, but narration falsely claimed installation. The next Home repeated the invented Clock icon. Hiding an app controls the registry, not every sentence the model may generate.
 
-The release has 36 world-package checks and 17 generic-package checks, including every app independently off, all apps off, App Store off, stale active selection, invalid flags and reveal resistance. Source configurations remain editable; generated artifacts include only enabled apps.
+The release has 38 world-project checks and 19 generic-project checks, including every app independently off, all apps off, App Store off, stale active selection, invalid flags and reveal resistance. Source configurations remain editable; generated artifacts include only enabled apps.
 
 Installation/readback: Pass: exact host preservation and saved-output equality.
 
@@ -64,3 +64,5 @@ Other vanilla coverage: Meal directory and numbered menu selection worked; a per
 
 Native Mods > Apply, automatic save migration and multiplayer remain unverified or unsupported as stated. No new alarm scheduler or access to Voyage's native clock is provided.
 
+
+Documentation correction verification,2026-09-30: Node24.19.0 used locally. Declared Node20 minimum was not exercised. Read-only saved-world comparator tested for semantic equality and changed data. No additional native gameplay or prompt changes.

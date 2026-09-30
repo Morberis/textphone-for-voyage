@@ -32,7 +32,7 @@ def blocks(page,size=10.4):
         rows=[[para(cell,size-.5,i==0) for cell in row] for i,row in enumerate(page['table'])]
         if page.get('contents'):
             for i,row in enumerate(page['table'][1:],1):
-                rows[i][0]=Paragraph('<link href="#page'+str(i+1)+'" color="#C4FF00">'+html.escape(row[0])+'</link>',ParagraphStyle('toclink',fontName='Body',fontSize=size-.5,leading=(size-.5)*1.36,textColor=ink,spaceAfter=7))
+                rows[i][0]=Paragraph('<link href="#page'+row[1]+'" color="#C4FF00">'+html.escape(row[0])+'</link>',ParagraphStyle('toclink',fontName='Body',fontSize=size-.5,leading=(size-.5)*1.36,textColor=ink,spaceAfter=7))
         table=Table(rows,colWidths=([width-44,44] if page.get('contents') else [156,width-156]),hAlign='LEFT')
         table.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),('ROWBACKGROUNDS',(0,1),(-1,-1),[panel,background]),('BACKGROUND',(0,0),(-1,0),light),('LINEBELOW',(0,0),(-1,0),1,cyan),('LINEBELOW',(0,1),(-1,-1),.35,colors.HexColor('#454059')),('LEFTPADDING',(0,0),(-1,-1),7),('RIGHTPADDING',(0,0),(-1,-1),7),('TOPPADDING',(0,0),(-1,-1),6),('BOTTOMPADDING',(0,0),(-1,-1),5)]))
         result += [table,Spacer(1,10)]
@@ -71,8 +71,13 @@ def chrome(c,title,index,total,series):
     return bottom-16
 
 def make_pdf(path,pages,series):
-    toc={'title':'Creator guide and reference','contents':True,'lead':series+' | Tested preview 0.6.0','paragraphs':['Editable source, configuration, custom-app examples and a complete-export installer are included. Read the verification limits before deployment.'], 'table':[['Contents','Page']]+[[p['title'],str(i+2)] for i,p in enumerate(pages)]}
-    all_pages=[toc]+pages
+    toc_count=1 if len(pages)<=20 else 2
+    toc_pages=[]
+    for chunk in range(toc_count):
+        selected=pages[chunk*16:(chunk+1)*16] if toc_count>1 else pages
+        offset=chunk*16 if toc_count>1 else 0
+        toc_pages.append({'title':'Creator guide and reference' if chunk==0 else 'Contents continued','contents':True,'lead':series+' | Tested preview 0.6.0','paragraphs':['Local testing, configuration and Voyage installation are separate workflows. Follow the complete merge and readback steps before a fresh game.'] if chunk==0 else [],'table':[['Contents','Page']]+[[p['title'],str(i+offset+toc_count+1)] for i,p in enumerate(selected)]})
+    all_pages=toc_pages+pages
     c=canvas.Canvas(str(path),pagesize=(W,H));c.setTitle(series);c.setAuthor('Morberis')
     for index,page in enumerate(all_pages,1):
         c.bookmarkPage('page'+str(index));c.addOutlineEntry(page['title'],'page'+str(index),level=0)

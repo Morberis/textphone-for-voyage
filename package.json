@@ -7,7 +7,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "test": "node --test test/generic-native.test.mjs test/merge.test.mjs test/installer.test.mjs test/app-enablement.test.mjs",
+    "test": "node --test test/generic-native.test.mjs test/merge.test.mjs test/installer.test.mjs test/app-enablement.test.mjs test/verify-world.test.mjs",
     "build": "node native/build-mod.mjs config/generic-phone.json build/generic-phone-mod.json && node native/build-installer.mjs build/generic-phone-mod.json build/generic-phone-installer.html \"TextPhone for Voyage\""
   },
   "license": "MIT",

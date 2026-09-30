@@ -46,16 +46,45 @@
       "note": "Suggested first test: phone → phone store → phone open Maps → phone view nearby. Ordinary narration and the host clock continue; browsing can consume story time."
     },
     {
-      "title": "Install without replacing your world",
+      "title": "Local development and testing",
+      "lead": "Run the code on your computer; deploy separately in Voyage.",
       "paragraphs": [
-        "1. Make a test remix and preserve its complete export. In Voyage Studio, open Content and the JSON editor. At the Content root, use Download initial GameState JSON. A save-game state export is a different artifact.",
-        "2. Open the included generic-phone-installer.html locally. Choose your complete world JSON, then Prepare updated world. Review the counts and Download updated world JSON. This page has no network requests and does not change the original file or your live world.",
-        "3. In the test remix, return to the Content root JSON editor. Replace the complete JSON with the complete prepared export, then Save. Do not paste the small phone-mod.json over your entire world: that file contains only the phone records.",
-        "4. Copy or export the saved complete world again. Check that the existing locations, starts, quests, lore and non-phone triggers remain. Create a new game and test the listed phone commands, your custom apps and ordinary gameplay.",
-        "The merger replaces the phone_mod_ namespace as one complete profile and prepends the narrator bridge once. It keeps other world fields. A conflicting earlier phone bridge produces a review error instead of silently stacking instructions."
+        "On this project’s GitHub page, use Code > Download ZIP, extract it, and open a terminal in the extracted project folder containing package.json. Alternatively clone the repository with Git. The generic project is source and examples for adaptation, not a ready-to-use world package.",
+        "For local tests and builds, install Node.js with npm. package.json declares Node 20 or newer; the current release was checked locally with Node 24.19.0. No npm install, API key or Voyage login is needed for these offline checks. Node 20 compatibility is declared, not a claimed Node 20 test result.",
+        "Run the commands below from that project folder. npm test exercises scripted behavior with simulated Voyage checks, plus merge and installer event logic. It does not run Voyage, call a narrator model, or prove the final chat rendering. A successful run reports zero failed tests.",
+        "Edit config/generic-phone.json to adapt the apps and connections. Replace the synthetic Corner Cafe catalogue/location mapping with your own world entries before deployment. Then run npm test and npm run build again. Build refreshes both the partial mod and its matching HTML merger.",
+        "npm run build produces the files named on the next page. Testing/building does not install anything into a Voyage world. You can use the repository entirely for local development, then choose to deploy the result."
       ],
-      "code": "node native/merge-world.mjs original.json build/generic-phone-mod.json new-world.json",
-      "note": "The command-line merger is an alternative using Node 20+. It refuses to overwrite an existing output or the original input. Native Mods → Apply has not been verified for this release; direct complete-export merging is the verified installation route. Existing saves are not migrated."
+      "code": "node --version\nnpm --version\nnpm test\nnpm run build",
+      "note": "The HTML merger needs only a modern browser when already built. Node is for development and the command-line merge route; it is not the game runtime."
+    },
+    {
+      "title": "Merge your world export",
+      "lead": "One complete input world + one selected phone profile = one separate complete output.",
+      "paragraphs": [
+        "First create a test copy: use More > Remix on a source world’s detail page, or More > Duplicate on your own world. Confirm the copy’s name/identity in Studio. Name it TEST__textphone__integration__YYYY-MM-DD__t01 using the actual date and a unique ID; record its purpose and cleanup condition.",
+        "In the copy’s Studio workspace, choose Content at the top. Select the top-level Content entry in the left file tree (or Open Content in the breadcrumb) so the breadcrumb is just Content. If a form is shown, choose View JSON. The editor is labelled Studio initial GameState JSON editor. Select Download initial GameState JSON above the editor and preserve the complete export.",
+        "Create a local-worlds folder in the project and save the export as original.json inside it. This folder is ignored by Git; keep the backup private. A running game’s save export or a single section such as Triggers is not this complete world definition.",
+        "Command-line route: after npm run build, run the command below. It reads build/generic-phone-mod.json, merges the phone triggers and narrator bridge, and writes local-worlds/with-phone.json. It refuses the original input as the output and refuses to overwrite an existing output; choose a fresh output filename on a later run.",
+        "Browser alternative: open build/generic-phone-installer.html from the extracted project in your browser. Under Original world JSON, choose original.json; select Prepare updated world, review the counts, then Download updated world JSON. Copy complete JSON is also available. The merger embeds the last built profile; rebuild after configuration changes.",
+        "Both routes use the same merger. It replaces only phone_mod_ triggers and prepends the supplied narrator bridge once in AI > Story > How to Use the Narrator. Other world fields are retained. A different existing phone bridge is a review error: compare it before attempting an upgrade."
+      ],
+      "code": "node native/merge-world.mjs local-worlds/original.json\n  build/generic-phone-mod.json local-worlds/with-phone.json",
+      "note": "Enter that command on ONE line in your terminal. The result is still a local file: nothing has been uploaded, installed or published yet."
+    },
+    {
+      "title": "Add the result in Voyage",
+      "lead": "Install the complete merged definition into the identified test copy.",
+      "paragraphs": [
+        "1. Open with-phone.json in a text editor and copy its entire contents. For the browser route, use Copy complete JSON or open the downloaded file. Do not copy the partial build/*-phone-mod.json: it contains only phone trigger records.",
+        "2. Return to that test copy in Voyage Studio. Select Content, then the top-level Content entry so the breadcrumb is just Content. Choose View JSON if the editor is in form mode. Confirm you are in the complete initial GameState editor, not a single trigger or a running save editor.",
+        "3. Click inside the JSON text, press Ctrl+A (Cmd+A on macOS) while that editor is focused, and paste the complete prepared JSON. Use Save in the Studio toolbar. This is an editor replacement using the merged complete file, not a file upload or a Mods > Apply step.",
+        "4. Reload Studio, return to Content root and download the saved initial GameState JSON as local-worlds/saved-world.json. Run the comparison command below. Success means the saved complete data matches the prepared file; key order and indentation are ignored. A mismatch needs review before a gameplay test.",
+        "5. Start a fresh game from the test world. Name and record the save as a test where the interface allows it. Send phone, then phone store, then a shortcut actually displayed on Home. Open each configured app, test its directory and toggles, and continue ordinary play. Check stored state as well as the narrator’s description of consequences.",
+        "World-definition changes do not migrate existing saves. Native Mods > Apply is not verified for this release. The merger does not buy items, deduct currency or deliver messages; those outcomes remain with the host world and narrator. Remove unneeded test saves after preserving results; retain a test world only with a recorded reason."
+      ],
+      "code": "node native/verify-world.mjs local-worlds/with-phone.json\n  local-worlds/saved-world.json",
+      "note": "Enter the comparison command on ONE line. Without Node, compare the prepared and saved complete JSON in a JSON-aware diff tool; counts alone cannot establish full equality."
     },
     {
       "title": "Choose the settings that matter",
@@ -255,7 +284,8 @@
         "For an optional clock adapter, write a small public record such as storage.public_clock = {date:\"2040-05-03\", time:\"09:20\"}, then set clockStorageKey:\"public_clock\". Keep that record short: at most 1000 serialized characters are included. The host adapter must update it before the relevant phone turn; this module does not infer a civil date from game-tick.",
         "Clock Alarms is a generated view, not a new scheduler. If your world requires dependable alarms, connect an existing authoritative event system and verify both the stored event and its later firing. An attractive generated alarm list is insufficient evidence."
       ],
-      "note": "There is no inventory-based device gate. Renaming a player can create a different phone key. Native multiplayer attribution is unsupported; offline per-name state isolation is not multiplayer support."
+      "note": "There is no inventory-based device gate. Renaming a player can create a different phone key. Native multiplayer attribution is unsupported; offline per-name state isolation is not multiplayer support.",
+      "paragraphs": []
     },
     {
       "title": "Build, edit and understand the runtime",
@@ -294,7 +324,8 @@
         "The builder emits phone_mod_config_* and phone_mod_data_* records as JSON inside inert script comments, read with JSON.parse. Runtime triggers use action-text conditions, planning phase and party scope. They use the documented storage, triggers, check, effects and log surfaces; they do not evaluate generated code.",
         "Only edit readable source/configuration, then rebuild. Deployment scripts remove indentation/comments to fit native limits; complete world exports stay pretty-printed. In Studio the generated records are under Content → Mechanics → Advanced → Triggers."
       ],
-      "note": "No npm dependencies are required. Node 20+ is for rebuilding and the CLI merger, not the Voyage runtime. The supplied HTML installer needs no Node installation, but its browser UI could not be live-tested in the authoring environment."
+      "note": "No npm dependencies are required. Node 20+ is for rebuilding and the CLI merger, not the Voyage runtime. The supplied HTML installer needs no Node installation, but its browser UI could not be live-tested in the authoring environment.",
+      "paragraphs": []
     },
     {
       "title": "API and persistence reference",
@@ -337,7 +368,8 @@
         "Configuration bounds: 32 apps, 12 pages per app, 128 businesses per app, unique lowercase ASCII app IDs up to 48 characters, unique short app labels up to 32 characters, and one-line summaries up to 160 characters. Page names use letters, spaces and hyphens, up to 40 characters. App/page guidance is bounded to 1800 characters each. Commands are limited to 400 characters. The builder also rejects any serialized trigger above 10000 characters.",
         "Changing the starting app list or default layout affects new phone state. Existing state retains its installed IDs and chosen layout, apart from IDs removed from the current catalogue. Start a fresh game when changing profiles; legacy save migration is not provided."
       ],
-      "note": "Do not install two phone profiles together under the same namespace. Use the complete-profile merger to remove obsolete phone records. Keep unrelated trigger names outside phone_mod_."
+      "note": "Do not install two phone profiles together under the same namespace. Use the complete-profile merger to remove obsolete phone records. Keep unrelated trigger names outside phone_mod_.",
+      "paragraphs": []
     },
     {
       "title": "Test the integration, not just the text",
@@ -467,7 +499,7 @@
         "All nine world-profile apps and their configured pages were exercised. Trials covered messaging/jobs/calls, time/alarms, maps/directions, food menus/orders, shopping browse/cart/orders/stores, social profiles/messages, responder listings/hiring inquiries and restricted marketplace account/listings. Browsing and explicit follow-up were checked separately.",
         "Two quote-to-confirmation purchase trials produced the expected native currency deductions only after explicit confirmation. No automatic job acceptance or responder hire was established in those browse/inquiry trials. Delivery arrival, long-term order memory, alarm firing, relationship outcomes and the complete employment lifecycle are host gameplay, not proven by these tests.",
         "Observed model failures include omitted screens, retained paired rows after a single-column request, false removal notices, lost field labels, invented alarm defaults, unauthored account routes, invented controls and a wrong app inventory description that survived reinstall. A requested tracking quest was not created. No atomic transaction guard or authoritative generated ledger is provided.",
-        "The final source passes 72 offline checks: 23 current native-script checks, three complete-export merge checks, two synthetic installer-event checks and 44 retained prototype/component checks. The distributed generic package contains 11 relevant checks; the world package contains 28. The older 44 checks are historical evidence, not proof of the current native display.",
+        "The final source passes 72 offline checks: 23 current native-script checks, three complete-export merge checks, two synthetic installer-event checks and 44 retained prototype/component checks. Current repositories contain 19 generic checks and 38 customized checks, including two saved-readback verifier checks. These are offline checks, not native platform proof. The older 44 checks are historical evidence, not proof of the current native display.",
         "The complete-export merge route was applied to the private test world and its complete saved JSON matched the generated result after reload. Existing host content was preserved. The same merge code and generic profile were tested offline. Native Mods → Apply and public mod publication were not validated.",
         "The local HTML installer's merge logic and event flow passed synthetic checks. Browser policy blocked opening its local file in the authoring environment, so its live browser interface was not verified. The command-line route uses the same tested merger. A requested narrow viewport did not change the observed browser dimensions; mobile wrapping remains unverified.",
         "Multiplayer attribution is unsupported. The adapter leaves phone state unchanged when there is not exactly one attributable player; independent-name offline checks do not establish multiplayer support. Older phone saves are not automatically migrated. Revalidate after changing the host instructions, model, routing, catalogue or platform renderer."
@@ -480,7 +512,7 @@
         "September 30, 2026: the distributed complete-export merger was applied to a fresh vanilla remix of source revision 176. The native saved full world matched the prepared output. All 63 host triggers, 227 locations and 19 starts were preserved; 23 phone records and the exact narrator prefix were added.",
         "The new single-player vanilla save used Sonnet 4.5 Story with High character and state settings. This trial used the predecessor hidden-download configuration. The new master enabled switch is tested offline only; no native deployment or visual guarantee for it is claimed.",
         "Initial Home displayed the four configured apps without Clock. An explicit phone install Clock request was refused in the saved registry and emitted Story instruction, but narration falsely claimed installation. The next Home repeated the invented Clock icon. Hiding an app controls the registry, not every sentence the model may generate.",
-        "The release has 36 world-package checks and 17 generic-package checks, including every app independently off, all apps off, App Store off, stale active selection, invalid flags and reveal resistance. Source configurations remain editable; generated artifacts include only enabled apps."
+        "The release has 38 world-project checks and 19 generic-project checks, including every app independently off, all apps off, App Store off, stale active selection, invalid flags and reveal resistance. Source configurations remain editable; generated artifacts include only enabled apps."
       ],
       "table": [
         [
@@ -516,12 +548,12 @@
         "Check these steps on your own test remix. Checkmarks record your review, not a guarantee of model behavior."
       ],
       "checklist": [
-        "Preserve a complete original world export and make a test remix.",
+        "Preserve the original export; create and record a clearly named test remix.",
         "Choose one profile and replace synthetic catalogue entries where needed.",
         "Use exact native location/area IDs and distinct app names and IDs.",
         "Set starting apps, discovery policy and each app’s delivery messages.",
         "Rebuild both the mod JSON and HTML installer after configuration changes.",
-        "Merge the complete export, save it in the test remix and read it back.",
+        "Paste the complete merged JSON at Content root; Save, reload and verify-world.",
         "Confirm original lore, NPCs, locations, quests and host triggers remain.",
         "Start a fresh save; open every app/page and test each chosen toggle.",
         "Test reveal before/after, install/remove, shortcuts and save/reload.",

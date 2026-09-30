@@ -1,75 +1,67 @@
-TEXTPHONE FOR VOYAGE — VERSION0.6.0 TESTED PREVIEW
+# TextPhone for Voyage
 
-START HERE
-1. Read the included Creator Guide, especially the verification pages.
-2. Preserve a COMPLETE world export from Voyage Studio Content.
-3. Open build/generic-phone-installer.html locally, choose that export,
-   and prepare/download a separate updated complete world JSON.
-4. Add the prepared COMPLETE JSON to a test remix in Studio Content, save,
-   read it back and start a new test game. Do not overwrite the whole world
-   with the partial *-phone-mod.json file.
+A configurable phone in Voyage story chat, with full source for **local development and offline tests** plus tools for **deployment into Voyage**.
 
-Alternative verified merge logic using Node20+:
-  node native/merge-world.mjs original.json build/generic-phone-mod.json new-world.json
+Version 0.6.0, tested preview. Single player. Scripts track the interface; narrator output can still contradict it. Clock starts disabled until connected to a suitable host time system.
 
-The HTML installer's logic was checked offline; its live browser UI was
-blocked in the authoring environment. The complete-export merge was applied
-through Studio and the full saved world matched. Native Mods > Apply has
-not been verified; this package does not claim a published mod listing.
+- [Full documentation](https://morberis.github.io/textphone-for-voyage/)
+- [Creator guide PDF](https://morberis.github.io/textphone-for-voyage/downloads/Creator-Guide.pdf)
+- [API reference](API-REFERENCE.txt) · [Examples](examples/README.txt) · [Verification](VERIFICATION.txt)
 
-EDIT / BUILD
-  Edit config/generic-phone.json.
-  node native/build-mod.mjs config/generic-phone.json build/generic-phone-mod.json
-  node native/build-installer.mjs build/generic-phone-mod.json build/generic-phone-installer.html "Modular Phone"
-  npm test
-No npm install is needed. Rebuilding the JSON alone does not update an old
-HTML installer; rebuild BOTH when you use the HTML route.
+This generic project supplies source and synthetic examples to adapt. It does not offer a ready-to-use world package. Obtain the source using GitHub **Code > Download ZIP**, or clone the repository.
 
-CUSTOM APPS
-See examples/README.txt and the PDF for generated pages, explicit activities,
-known/public/curated stores, per-app delivery rules, hidden downloads,
-shortcuts/layout, and host connections. API-REFERENCE.txt explains runtime
-storage and functions. Optional creator improvements are listed in the guide.
+## 1. Test and build locally
 
-CLOCK DEFAULT
-Every app has an enabled switch. Clock defaults off. Read CLOCK-SETUP.txt
-to configure apps and enable Clock with a suitable time
-system. Changing this default does not migrate existing saves.
+Extract the source and open a terminal in the folder containing `package.json`. Node.js with npm is needed here. The declared minimum is Node 20; current local verification uses Node 24.19.0. Node 20 itself has not been tested for this release.
 
-KNOWN LIMITS
-Scripts track the phone, but narration can omit or contradict a correct
-screen. Live tests found wrong uninstall text and layout, and invented
-choices. View VERIFICATION.txt for detailed results. Multiplayer is not
-supported by the current identity adapter. Existing saves are not migrated.
+```sh
+node --version
+npm --version
+npm test
+npm run build
+```
 
-UNINSTALL / ROLLBACK
-Keep the original export. To undo a test deployment, restore that definition
-in your test remix and start a fresh game. For a later world with unrelated
-edits, first export the current definition; remove only trigger keys starting
-phone_mod_ and the exact prepended text in narrator-bridge.txt from
-AI > Story > How to Use the Narrator. Preserve the remaining instructions.
-Review the diff before saving. Existing game saves keep their old scripts
-and phone state; this package provides no automatic save rollback.
+No `npm install`, API key, Voyage account or paid generation is needed. Tests use a simulated Voyage scripting environment: they verify routing, toggles, state, merging and installer events, not AI narration or native chat rendering. This is a development/test harness, not a standalone Voyage game.
 
-UPGRADE
-Use one profile per world. The merger replaces its namespace, not unrelated
-triggers. A different existing phone bridge is a review error; compare it
-with narrator-bridge.txt before replacing. Older phone implementations or
-other namespaces need an explicit migration review. Do not stack profiles.
+Edit `config/generic-phone.json` for your apps and host connections. Replace synthetic businesses and location mappings with entries from your world. Rerun tests and build after edits. Build produces `build/generic-phone-mod.json` (partial trigger payload) and `build/generic-phone-installer.html` (browser merger with that profile embedded).
 
-CONTENTS
-Creator Guide PDF: instructions, examples, comparisons, API and checklist.
-build/: ready-built partial mod JSON and offline complete-export installer.
-config/: editable profile(s). src/ and native/: reusable source/tools.
-examples/: valid copyable configurations and a reveal-trigger example.
-test/: relevant repeatable checks. MANIFEST.json: file digests.
+## 2. Prepare a complete merged world
 
-PROVENANCE
-Independently authored phone integration using acquired Latitude trigger
-documentation and observed production behavior, September2026, engine36.
-Not an official Latitude feature. This package contains no credentials,
-populated game saves or complete private world export. No public license
-for underlying world content or third-party assets is granted here.
+1. In Voyage, make a test copy using the source detail page **More > Remix**, or your own world’s **More > Duplicate**. Give it a `TEST__...` name and record its identity/purpose.
+2. In that copy’s Studio, choose **Content** at the top and select the top-level **Content** file-tree entry. The breadcrumb should be just **Content**. Choose **View JSON** if needed.
+3. Select **Download initial GameState JSON** above the editor. Keep the complete original; this is not a running-save or single-section export.
+4. Create `local-worlds` inside the project and save the backup as `local-worlds/original.json`. This folder is ignored by Git. Keep world exports and saves private.
+5. From the project folder, run this single-line command:
 
-LICENSE
-MIT covers the original TextPhone code and documentation. Third-party world material and assets remain separate and are not relicensed by this project. See LICENSE and THIRD_PARTY_NOTICES.md.
+```sh
+node native/merge-world.mjs local-worlds/original.json build/generic-phone-mod.json local-worlds/with-phone.json
+```
+
+The tool prints retained/installed record counts and writes a **new complete world**. It replaces only `phone_mod_` triggers and adds the narrator bridge once at `aiInstructions.generateStory["How to Use the Narrator"]`, retaining other fields. A different existing phone bridge causes a review error. It refuses to overwrite an existing output, so use a fresh output name for another attempt.
+
+**Browser alternative:** open `build/generic-phone-installer.html` locally, choose **Original world JSON**, select **Prepare updated world**, review the report, then **Download updated world JSON** or **Copy complete JSON**. It needs no Node when already built. It sends no files anywhere. Rebuild it after changing the profile. Neither route installs anything into Voyage by itself.
+
+## 3. Add the result in Voyage
+
+1. Open `local-worlds/with-phone.json` in a text editor and copy all its text, or use **Copy complete JSON** in the browser merger.
+2. Return to the identified test world’s **Studio > Content** root; choose **View JSON** if needed. Confirm the breadcrumb is just **Content**, not a trigger/category.
+3. Click inside **Studio initial GameState JSON editor**, select all its text with Ctrl+A (Cmd+A on macOS), and paste the **complete merged JSON**. Use **Save** in the toolbar. This is a full editor replacement with the merged complete file; do not paste `build/generic-phone-mod.json` here.
+4. Reload Studio, download the saved initial GameState JSON again, and store it as `local-worlds/saved-world.json`. Compare it with the prepared file:
+
+```sh
+node native/verify-world.mjs local-worlds/with-phone.json local-worlds/saved-world.json
+```
+
+Success prints `PASS`. It compares all parsed data while ignoring formatting and object-key order. On mismatch, review a local JSON diff before playtesting. Without Node, use a JSON-aware comparison tool.
+
+5. Start a **fresh test game** from this world. Record the save, send `phone`, `phone store`, and a shortcut actually displayed on Home. Exercise your apps/toggles and ordinary play; compare narration with stored state. Retire unneeded test saves after saving the results.
+
+Existing saves are not migrated. Native **Mods > Apply** is unverified; this guide uses the complete-export editor route. Purchases, jobs and messages remain host-world/narrator outcomes.
+
+## Project layout and documentation builds
+
+`src/`: runtime/merger; `config/`: editable profile; `native/`: build, merge and readback tools; `test/`: offline checks; `examples/`: custom app configurations. `documentation/guide.json` is the complete guide source; `tools/build-site.py` renders the website and `tools/build-guide.py` renders the PDF. Run these with Python from the project. PDF authoring additionally needs ReportLab and Arial/Consolas fonts (Windows Fonts, or `TEXTPHONE_FONT_DIR` containing arial.ttf, arialbd.ttf and consola.ttf). These dependencies are not needed to use or test TextPhone. `docs/` is the Pages publishing folder.
+
+## License
+
+MIT covers the original TextPhone code and documentation. Third-party world material and assets remain separate. See [LICENSE](LICENSE) and [provenance](THIRD_PARTY_NOTICES.md).
