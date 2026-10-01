@@ -65,3 +65,9 @@ Existing saves are not migrated. Native **Mods > Apply** is unverified; this gui
 ## License
 
 MIT covers the original TextPhone code and documentation. Third-party world material and assets remain separate. See [LICENSE](LICENSE) and [provenance](THIRD_PARTY_NOTICES.md).
+
+## Upgrading TextPhone
+
+Use the new package with a fresh complete export of the world that already contains TextPhone. Preserve your edited configuration and rebuild the new installer before merging if you customized the profile; the supplied installer does not automatically import old app settings. Test in a copy, save and read back the whole result, then check a fresh game before updating the main world.
+
+The creator guide includes numbered upgrade steps, the narrator-bridge conflict location, configuration preservation and rollback. Existing saves require separate verification or migration; never replace a running save with a world export.

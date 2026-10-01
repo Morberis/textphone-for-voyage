@@ -1,7 +1,7 @@
 {
   "project": "textphone-for-voyage",
   "version": "0.6.0",
-  "documentationRevision": "2026-09-30-r6",
+  "documentationRevision": "2026-09-30-r7",
   "files": [
     {
       "path": ".gitattributes",
@@ -30,8 +30,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 1182,
-      "sha256": "85992feb1d09a04c2ee556b4b9928b69f1d7516fd936759862faff3cf15cf1b9"
+      "bytes": 1452,
+      "sha256": "de6d80416583e16a6fecc06ca047ca7046ee8da3cdcc211aeff4bb072e6f710b"
     },
     {
       "path": "CLOCK-SETUP.txt",
@@ -55,13 +55,18 @@
     },
     {
       "path": "docs/downloads/Creator-Guide.pdf",
-      "bytes": 158507,
-      "sha256": "dc95bcda9d261de8566dec96f06d27dbcdacc8fe8408f1087b7eeb1b80ff1a69"
+      "bytes": 165202,
+      "sha256": "dfc43dad4061dc999ba083914330840ffb94f3df6e57d3271c7a7b2a9243db70"
+    },
+    {
+      "path": "docs/downloads/textphone-for-voyage-0.6.0.zip",
+      "bytes": 150996,
+      "sha256": "9988000a4152c312c21d91b809cd1d107ef323c19ae1fef0194528ea1eee8643"
     },
     {
       "path": "docs/index.html",
-      "bytes": 41972,
-      "sha256": "ee66de96b27067302f9f5f04b4bf5f39dadff40270a4ba2c8db0235671c9df85"
+      "bytes": 46260,
+      "sha256": "35c3b8bde94811c88d8292dd2d165042172c9d92b6b4f0c10a72ab8372e6a6f3"
     },
     {
       "path": "docs/style.css",
@@ -70,8 +75,8 @@
     },
     {
       "path": "documentation/guide.json",
-      "bytes": 33836,
-      "sha256": "c4eb71bea1f0d01f33e84ba56fcc0236a1d79e3002191e6e0501caedc1c20cf8"
+      "bytes": 38065,
+      "sha256": "df7b9fecaf182acbbcf683f1174f9dbf02cc821b736fd342d3ed7fafca44017a"
     },
     {
       "path": "documentation/site.json",
@@ -160,8 +165,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 6126,
-      "sha256": "e0a46fe617f0fec201c99592d97ddd7f6731efbd84ed78f0b5b0eeb4dcf43691"
+      "bytes": 6784,
+      "sha256": "3f50744f94c94669919d1e9e8bf987e87cb63edbbe33fad45c5f74d9fc566512"
     },
     {
       "path": "src/merge-phone-world.mjs",
@@ -220,8 +225,8 @@
     },
     {
       "path": "START-HERE.txt",
-      "bytes": 787,
-      "sha256": "b1e2f561b8636ee9032c5efb70cd21c49ec0e53734475a2a53d0ab2811a1e277"
+      "bytes": 1248,
+      "sha256": "986fa5e746fbcc1f37f83f6c631364f1c5641fd76a00beb34aa6a5c667d2dcb4"
     },
     {
       "path": "test/app-enablement.test.mjs",
@@ -275,8 +280,8 @@
     },
     {
       "path": "VERIFICATION.txt",
-      "bytes": 7511,
-      "sha256": "9dc72de20fc26b655800e6d68072d93f267728cb37bbf4df93f67ad26d6f5f57"
+      "bytes": 7774,
+      "sha256": "455a5cbb1a7a559b799d852ea45c2883fcad393b4211ce3d4a2b7cb14243e2da"
     }
   ]
 }

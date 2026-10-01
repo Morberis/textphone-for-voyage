@@ -13,3 +13,6 @@ Keep your original world export. This release uses the complete-world merger.
 Native Add mod > Apply is not the installation method for this release.
 
 The generic profile includes example businesses. Replace them with your world's real locations before installation.
+
+UPGRADING AN EXISTING TEXTPHONE WORLD
+Read Upgrade an existing TextPhone world and Existing saves and rollback in Creator-Guide.pdf. Start from a fresh complete export of your CURRENT world. Preserve your edited configuration and rebuild the new installer if you customized it. The packaged installer replaces old phone settings with its own profile. Keep your backup; test in a copy before updating your main world. Running saves are a separate migration.

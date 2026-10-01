@@ -91,6 +91,33 @@
       "note": "Enter the comparison command on ONE line. Without Node, compare the prepared and saved complete JSON in a JSON-aware diff tool; counts alone cannot establish full equality."
     },
     {
+      "title": "Upgrade an existing TextPhone world",
+      "lead": "Upgrade the world you currently use, keeping your own content and app settings.",
+      "paragraph_spacing": 8,
+      "paragraphs": [
+        "1. Download the new package for the same profile: generic or Your Power is What. Extract it into a new folder. Keep the previous package until the upgrade is working.",
+        "2. In your current world's Studio, open the top-level Content entry and select Download initial GameState JSON. Keep this complete export unchanged as the rollback backup. Use this current export, not the original world from before you added TextPhone.",
+        "3. Preserve your edited config/generic-phone.json. Compare it with the new version's configuration and retain your app IDs, enabled switches, starting apps, hidden-app rules, business lists, delivery messages and clock connection. If you changed configuration, rebuild the installer using Customize and rebuild before continuing. The supplied installer contains its packaged settings; it does not automatically import your previous app configuration.",
+        "4. Make a TEST__ copy of your current world and confirm that its Content matches your backup. Keep any other world updates you have already made.",
+        "5. Open the NEW build/generic-phone-installer.html locally. Under Original world JSON, select the complete current export from step 2. Select Prepare updated world, then Download updated world JSON.",
+        "6. If the installer reports a different phone narrator bridge, stop before installation. In Studio, the affected section is Content > AI > Story > How to Use the Narrator. Preserve that entire section and compare its opening Phone interface: block with the previous package. Resolve the changed phone block before retrying; keep the rest of the world's narrator instructions.",
+        "7. Follow Add the result in Voyage to install the prepared COMPLETE JSON in the test copy, save, reload and compare the saved export. The merger replaces phone_mod_ records as one profile; it retains other world content. Do not stack another copy of the old phone triggers.",
+        "8. Start a fresh game in the test copy. Check Home, App Store, shortcuts and the apps or rules you customized. Once satisfied, repeat the same upgrade with a fresh export of your main world so intervening creator edits are retained."
+      ],
+      "note": "Keep one TextPhone profile per world. A new installer or world revision is not proof that a running save has received the new phone code."
+    },
+    {
+      "title": "Existing saves and rollback",
+      "lead": "World installation and saved-game migration are different operations.",
+      "paragraphs": [
+        "A fresh game uses the updated world definition. A running game also carries its own generated content, character state and phone state. Treat it as unchanged until you verify the new behavior there; the local installer does not edit running saves.",
+        "This package has no automatic saved-game migrator. Do not paste a world export into a game State Editor or clear phone_mod storage to force an upgrade. A save-specific migration must preserve characters, purchases, installed and revealed apps, shortcuts and host-system state.",
+        "To undo a world upgrade: open the affected world in Studio, select the top-level Content entry, choose View JSON, replace the editor contents with the complete backup from before the upgrade, then Save and reload. Read back the saved export and compare it with that backup.",
+        "Restoring a world definition does not undo actions already taken in a running game. Retain the prior package, edited configuration and pre-upgrade world export until you no longer need rollback.",
+        "When requesting help, include the old and new TextPhone versions, profile, the failed step and the exact error. State whether the problem occurs in a fresh game or an existing save. Share only the relevant configuration or instruction section rather than a complete private save."
+      ]
+    },
+    {
       "title": "Choose the settings that matter",
       "paragraphs": [
         "Edit config/generic-phone.json, then rebuild. The starting apps are Messages, Maps, Food Delivery and App Store. Clock is configured but disabled; creators can enable it after connecting a suitable time system. Corner Cafe is an example: replace its catalogue entry with a business from your own world."
@@ -464,7 +491,8 @@
         "Start a fresh save; open every app/page and test each chosen toggle.",
         "Test reveal before/after, install/remove, shortcuts and save/reload.",
         "Check narration AND saved state for consequential actions.",
-        "Review the troubleshooting and gameplay limitations before sharing."
+        "Review the troubleshooting and gameplay limitations before sharing.",
+        "For an upgrade, preserve my current world export and edited configuration, then check the updated world in a fresh game."
       ]
     },
     {

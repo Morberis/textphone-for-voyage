@@ -66,3 +66,5 @@ Native Mods > Apply, automatic save migration and multiplayer remain unverified 
 
 
 Documentation correction verification,2026-09-30: Node24.19.0 used locally. Declared Node20 minimum was not exercised. Read-only saved-world comparator tested for semantic equality and changed data. No additional native gameplay or prompt changes.
+
+Documentation r7: regenerated guide and website; checked all PDF pages visually, upgrade page at readable size, 12 interactive checkbox fields and six-file ZIP integrity. API/custom-app guidance retained. Runtime unchanged; no new gameplay acceptance claimed.

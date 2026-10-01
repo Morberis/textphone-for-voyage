@@ -13,3 +13,7 @@ Separated local Node testing/builds from Voyage installation; supplied complete 
 - Keep API, app examples and configuration instructions; remove test-history pages.
 - Ship six creator files including the editable profile. Generic package is the public GitHub download; customized package is distributed separately.
 - Clock Time page displays actionable time-advance instructions when enabled.
+
+## Upgrade documentation r7 - 2026-09-30
+
+Numbered world-upgrade instructions cover current-export backups, configuration preservation and rebuilds, existing narrator-bridge conflicts, fresh-game checks, running-save boundaries and rollback. Runtime remains 0.6.0.
