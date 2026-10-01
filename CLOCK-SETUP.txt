@@ -42,3 +42,7 @@ reenabling does not reinstall an app removed from that existing registry.
 This controls module data and routing, not every narrator sentence or the
 world's independent lore/services. Native testing found narration could
 claim a hidden app installed despite a correct refusal in saved state.
+
+Clock time controls
+To advance to a specific time, enter Advance time to [time] in the normal story input, replacing [time] with your target time. To wait a duration, enter Wait [number] hours, replacing [number] with the hours to pass. The Clock Time page displays these instructions. The host handles time passage and intervening events.
+Clock remains disabled until enabled and connected by the creator.

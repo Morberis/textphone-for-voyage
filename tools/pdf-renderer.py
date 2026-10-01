@@ -24,7 +24,9 @@ def para(text,size=10.4,bold=False):
 def blocks(page,size=10.4):
     result=[]
     if page.get('lead'):result += [para(page['lead'],size,True),Spacer(1,6)]
-    result += [para(x,size) for x in page.get('paragraphs',[])]
+    for text in page.get('paragraphs',[]):
+        result.append(para(text,size))
+        if page.get('paragraph_spacing'):result.append(Spacer(1,page['paragraph_spacing']))
     if page.get('code'):
         code=page['code'].replace('node --test test/*.test.mjs','npm test')
         result += [Preformatted(code,ParagraphStyle('code',fontName='Code',fontSize=min(size-1.6,8.5),leading=size*1.15,textColor=ink)),Spacer(1,12)]
@@ -76,7 +78,7 @@ def make_pdf(path,pages,series):
     for chunk in range(toc_count):
         selected=pages[chunk*16:(chunk+1)*16] if toc_count>1 else pages
         offset=chunk*16 if toc_count>1 else 0
-        toc_pages.append({'title':'Creator guide and reference' if chunk==0 else 'Contents continued','contents':True,'lead':series+' | Tested preview 0.6.0','paragraphs':['Local testing, configuration and Voyage installation are separate workflows. Follow the complete merge and readback steps before a fresh game.'] if chunk==0 else [],'table':[['Contents','Page']]+[[p['title'],str(i+offset+toc_count+1)] for i,p in enumerate(selected)]})
+        toc_pages.append({'title':'Creator guide and reference' if chunk==0 else 'Contents continued','contents':True,'lead':series+' | Creator guide 0.6.0','paragraphs':['Local testing, configuration and Voyage installation are separate workflows. Follow the complete merge and readback steps before a fresh game.'] if chunk==0 else [],'table':[['Contents','Page']]+[[p['title'],str(i+offset+toc_count+1)] for i,p in enumerate(selected)]})
     all_pages=toc_pages+pages
     c=canvas.Canvas(str(path),pagesize=(W,H));c.setTitle(series);c.setAuthor('Morberis')
     for index,page in enumerate(all_pages,1):

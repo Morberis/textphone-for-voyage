@@ -8,7 +8,7 @@ Version 0.6.0, tested preview. Single player. Scripts track the interface; narra
 - [Creator guide PDF](https://morberis.github.io/textphone-for-voyage/downloads/Creator-Guide.pdf)
 - [API reference](API-REFERENCE.txt) · [Examples](examples/README.txt) · [Verification](VERIFICATION.txt)
 
-This generic project supplies source and synthetic examples to adapt. It does not offer a ready-to-use world package. Obtain the source using GitHub **Code > Download ZIP**, or clone the repository.
+[Download the generic creator package](docs/downloads/textphone-for-voyage-0.6.0.zip): installer, editable example configuration, creator/API guide and license notices. Adapt the example businesses to your world. For builders and app examples, obtain the full source with **Code > Download ZIP**. The customized Your Power is What package is distributed separately.
 
 ## 1. Test and build locally
 

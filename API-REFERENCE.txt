@@ -98,3 +98,7 @@ Bounds and errors
 See examples/README.txt and the PDF. Test state, emitted effects, visible
 output and native consequences separately. There is no guaranteed exact
 screen, transaction veto, authoritative order cache or alarm scheduler.
+
+Clock time controls
+To advance to a specific time, enter Advance time to [time] in the normal story input, replacing [time] with your target time. To wait a duration, enter Wait [number] hours, replacing [number] with the hours to pass. The Clock Time page displays these instructions. The host handles time passage and intervening events.
+Clock remains disabled until enabled and connected by the creator.

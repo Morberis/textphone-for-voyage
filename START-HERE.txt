@@ -1,0 +1,15 @@
+TEXTPHONE CREATOR PACKAGE 0.6.0
+
+Open Creator-Guide.pdf. Use the contents to find Merge your world export,
+then Add the result in Voyage. The installer is:
+  build/generic-phone-installer.html
+
+To customize apps, use config/generic-phone.json and follow Customize and
+rebuild. API, settings and app examples remain in the guide. Download the
+generic source and example files from https://github.com/Morberis/textphone-for-voyage
+No Node or source files are needed to run the unchanged browser installer.
+
+Keep your original world export. This release uses the complete-world merger.
+Native Add mod > Apply is not the installation method for this release.
+
+The generic profile includes example businesses. Replace them with your world's real locations before installation.

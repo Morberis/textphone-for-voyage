@@ -7,3 +7,9 @@ First public TextPhone release. Adds a master enabled switch for every app; Cloc
 ## Documentation correction - 2026-09-30
 
 Separated local Node testing/builds from Voyage installation; supplied complete merge, paste and saved-readback instructions and a read-only comparison command. Removed style names from document labels. Generic site provides source and PDF documentation, without a packaged-mod download. Runtime and game prompts unchanged.
+
+## Creator documentation and Clock guidance r6
+
+- Keep API, app examples and configuration instructions; remove test-history pages.
+- Ship six creator files including the editable profile. Generic package is the public GitHub download; customized package is distributed separately.
+- Clock Time page displays actionable time-advance instructions when enabled.

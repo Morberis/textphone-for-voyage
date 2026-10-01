@@ -1,7 +1,7 @@
 {
   "project": "textphone-for-voyage",
   "version": "0.6.0",
-  "documentationRevision": "2026-09-30-r2",
+  "documentationRevision": "2026-09-30-r6",
   "files": [
     {
       "path": ".gitattributes",
@@ -15,13 +15,13 @@
     },
     {
       "path": "API-REFERENCE.txt",
-      "bytes": 5742,
-      "sha256": "36d5f328b86080b590af9560e0e7a1d037c30a5c8a1971ce93811f07e03000c1"
+      "bytes": 6254,
+      "sha256": "54942af74e7711ffaf592c186e809f0e39a2d4583c8fd6722dbbe99232564801"
     },
     {
       "path": "build/generic-phone-installer.html",
-      "bytes": 64147,
-      "sha256": "dbe64ea239eaa84e5f252b673d018aa3563bf011ffca7f4a2d8f02fcb79e012d"
+      "bytes": 64133,
+      "sha256": "4ddb622dbe9baf331f1f56850ae5e65eb42bd59d94c49cb37818406174e096ce"
     },
     {
       "path": "build/generic-phone-mod.json",
@@ -30,18 +30,18 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 810,
-      "sha256": "522ab596d8a853a5245e8abccf3df34328adb3fd2d9e4902ea9a2da433dac5b9"
+      "bytes": 1182,
+      "sha256": "85992feb1d09a04c2ee556b4b9928b69f1d7516fd936759862faff3cf15cf1b9"
     },
     {
       "path": "CLOCK-SETUP.txt",
-      "bytes": 2530,
-      "sha256": "e99793d313141c5fa4a9da6b8d64f9327bca3bdbb86f798dde705583f0d3e5c3"
+      "bytes": 2986,
+      "sha256": "dd2a5cc0ac4a982a258710f3c2a5fa7cabf1f121540cdf0155c40827808e158e"
     },
     {
       "path": "config/generic-phone.json",
-      "bytes": 3888,
-      "sha256": "78c0b4d0355661795d190437210924cb0fe8e4e78b85fc1cd2a392c0379cfde3"
+      "bytes": 4387,
+      "sha256": "88c443201b8e9ac7af59368e0753e2a4f26e1786d351ec48411a9d0c1a737630"
     },
     {
       "path": "docs/.nojekyll",
@@ -55,13 +55,13 @@
     },
     {
       "path": "docs/downloads/Creator-Guide.pdf",
-      "bytes": 170922,
-      "sha256": "f80e5b829bf97c48b1d9237008578426c6206fe5466b98e1044b771d9d72377b"
+      "bytes": 158507,
+      "sha256": "dc95bcda9d261de8566dec96f06d27dbcdacc8fe8408f1087b7eeb1b80ff1a69"
     },
     {
       "path": "docs/index.html",
-      "bytes": 51735,
-      "sha256": "9c27a8241c16975cfec3166bb7e457f54be7500938ea5dae649ecc6c9757af5f"
+      "bytes": 41972,
+      "sha256": "ee66de96b27067302f9f5f04b4bf5f39dadff40270a4ba2c8db0235671c9df85"
     },
     {
       "path": "docs/style.css",
@@ -70,8 +70,8 @@
     },
     {
       "path": "documentation/guide.json",
-      "bytes": 44172,
-      "sha256": "8399681b170b929411c3c7e414cfe0e185e7b44aa0eb115f6c8fd956d72c1b08"
+      "bytes": 33836,
+      "sha256": "c4eb71bea1f0d01f33e84ba56fcc0236a1d79e3002191e6e0501caedc1c20cf8"
     },
     {
       "path": "documentation/site.json",
@@ -160,13 +160,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5959,
-      "sha256": "2d3f8fa44992152bd5fb1116f82670fe9b98c198ac74f1441a3386b6046addab"
-    },
-    {
-      "path": "README.txt",
-      "bytes": 5959,
-      "sha256": "2d3f8fa44992152bd5fb1116f82670fe9b98c198ac74f1441a3386b6046addab"
+      "bytes": 6126,
+      "sha256": "e0a46fe617f0fec201c99592d97ddd7f6731efbd84ed78f0b5b0eeb4dcf43691"
     },
     {
       "path": "src/merge-phone-world.mjs",
@@ -224,14 +219,19 @@
       "sha256": "8b1216005040da5e2af6777cf8dbea5332cd2cac60ad70bf87c62afd1c410fec"
     },
     {
+      "path": "START-HERE.txt",
+      "bytes": 787,
+      "sha256": "b1e2f561b8636ee9032c5efb70cd21c49ec0e53734475a2a53d0ab2811a1e277"
+    },
+    {
       "path": "test/app-enablement.test.mjs",
       "bytes": 4740,
       "sha256": "eae0f09f501825ad0047408d24882532f04110b98ca12097d5dccbdc22078ca0"
     },
     {
       "path": "test/generic-native.test.mjs",
-      "bytes": 5555,
-      "sha256": "a1ff6d51a88326eab790cd157453acfd0feddb6d76eefd5df8bb29b05b000a7b"
+      "bytes": 6371,
+      "sha256": "36e557970bc09e6c3ae52f7941d8ee9fc911acd6ba49f5ea3c9dce2561038326"
     },
     {
       "path": "test/installer.test.mjs",
@@ -254,19 +254,24 @@
       "sha256": "f1fb865e9c3c4e3ff9c5031492561b8382d0dad2deacdba23be0c86edf042565"
     },
     {
+      "path": "tools/build-creator-package.py",
+      "bytes": 742,
+      "sha256": "c29b5f7ff0306dc824512c7445971dbbc588f1af6366664c8a8de4bb44960d55"
+    },
+    {
       "path": "tools/build-guide.py",
       "bytes": 478,
       "sha256": "b2e59e3c264205f34f96551f9305cd0ba42748167da3db8282b0c9606ac55dd2"
     },
     {
       "path": "tools/build-site.py",
-      "bytes": 4732,
-      "sha256": "f44e674cb79053ff076ae130d4b878e448cfa1ae6baececf0c600776d3874051"
+      "bytes": 4698,
+      "sha256": "0089d940b92184eba6bae30dc6729f87776e3e5e810bde09dfaff9846ddd8363"
     },
     {
       "path": "tools/pdf-renderer.py",
-      "bytes": 6885,
-      "sha256": "b27d66d5d113ed00589ee0de9032f452bcecaebb9518c790d70bd19d71224d58"
+      "bytes": 6996,
+      "sha256": "10e062cf4549f108320ed35c774a9b6d836165dad7db514b19eeb35e1453f1a7"
     },
     {
       "path": "VERIFICATION.txt",

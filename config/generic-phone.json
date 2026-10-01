@@ -33,7 +33,7 @@
         {
           "name": "Time",
           "kind": "generated",
-          "guidance": "Display the established world date and time. Use the host calendar as authority. A turn counter is not an hour or date.",
+          "guidance": "Display the established world date and time. Use the host calendar as authority. A turn counter is not an hour or date. Under Advance time, display these instructions: \"To advance to a specific time, enter Advance time to [time] in the normal story input. Replace [time] with your target time. To wait a duration, enter Wait [number] hours. Replace [number] with the hours you want to pass.\" The host resolves these ordinary story requests using its existing time rules and intervening events.",
           "contextReader": "clock"
         },
         {

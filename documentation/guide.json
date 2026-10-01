@@ -46,31 +46,35 @@
       "note": "Suggested first test: phone → phone store → phone open Maps → phone view nearby. Ordinary narration and the host clock continue; browsing can consume story time."
     },
     {
-      "title": "Local development and testing",
-      "lead": "Run the code on your computer; deploy separately in Voyage.",
+      "title": "Customize and rebuild",
+      "lead": "Optional: skip this page when using the supplied installer unchanged.",
+      "paragraph_spacing": 7,
       "paragraphs": [
-        "On this project’s GitHub page, use Code > Download ZIP, extract it, and open a terminal in the extracted project folder containing package.json. Alternatively clone the repository with Git. The generic project is source and examples for adaptation, not a ready-to-use world package.",
-        "For local tests and builds, install Node.js with npm. package.json declares Node 20 or newer; the current release was checked locally with Node 24.19.0. No npm install, API key or Voyage login is needed for these offline checks. Node 20 compatibility is declared, not a claimed Node 20 test result.",
-        "Run the commands below from that project folder. npm test exercises scripted behavior with simulated Voyage checks, plus merge and installer event logic. It does not run Voyage, call a narrator model, or prove the final chat rendering. A successful run reports zero failed tests.",
-        "Edit config/generic-phone.json to adapt the apps and connections. Replace the synthetic Corner Cafe catalogue/location mapping with your own world entries before deployment. Then run npm test and npm run build again. Build refreshes both the partial mod and its matching HTML merger.",
-        "npm run build produces the files named on the next page. Testing/building does not install anything into a Voyage world. You can use the repository entirely for local development, then choose to deploy the result."
+        "1. Download the full generic source from github.com/Morberis/textphone-for-voyage using Code > Download ZIP. Extract it on your computer. Node.js 20 or newer is required for rebuilding.",
+        "2. Copy config/generic-phone.json from this creator package into the source project's config folder. Open that file in a text editor. The following pages explain app settings, examples and APIs.",
+        "3. Make your changes and save the configuration. Keep app IDs stable, use exact world location IDs, and give new apps distinct IDs and labels.",
+        "4. Open a terminal in the source folder containing package.json. Run the two commands below, entering each command on ONE line. No npm install or API key is needed.",
+        "5. Use the new build/generic-phone-installer.html to prepare a fresh complete world export. Follow the merge and installation pages again, then check your changes in a fresh game."
       ],
-      "code": "node --version\nnpm --version\nnpm test\nnpm run build",
-      "note": "The HTML merger needs only a modern browser when already built. Node is for development and the command-line merge route; it is not the game runtime."
+      "code": "node native/build-mod.mjs config/generic-phone.json\n  build/generic-phone-mod.json\n\nnode native/build-installer.mjs build/generic-phone-mod.json\n  build/generic-phone-installer.html",
+      "note": "Examples live in the source project's examples folder. Edit configuration and readable source, then rebuild; direct changes to a generated installer are overwritten by the next build."
     },
     {
       "title": "Merge your world export",
-      "lead": "One complete input world + one selected phone profile = one separate complete output.",
+      "lead": "Adapt the included example configuration to your world before using this installer.",
       "paragraphs": [
-        "First create a test copy: use More > Remix on a source world’s detail page, or More > Duplicate on your own world. Confirm the copy’s name/identity in Studio. Name it TEST__textphone__integration__YYYY-MM-DD__t01 using the actual date and a unique ID; record its purpose and cleanup condition.",
-        "In the copy’s Studio workspace, choose Content at the top. Select the top-level Content entry in the left file tree (or Open Content in the breadcrumb) so the breadcrumb is just Content. If a form is shown, choose View JSON. The editor is labelled Studio initial GameState JSON editor. Select Download initial GameState JSON above the editor and preserve the complete export.",
-        "Create a local-worlds folder in the project and save the export as original.json inside it. This folder is ignored by Git; keep the backup private. A running game’s save export or a single section such as Triggers is not this complete world definition.",
-        "Command-line route: after npm run build, run the command below. It reads build/generic-phone-mod.json, merges the phone triggers and narrator bridge, and writes local-worlds/with-phone.json. It refuses the original input as the output and refuses to overwrite an existing output; choose a fresh output filename on a later run.",
-        "Browser alternative: open build/generic-phone-installer.html from the extracted project in your browser. Under Original world JSON, choose original.json; select Prepare updated world, review the counts, then Download updated world JSON. Copy complete JSON is also available. The merger embeds the last built profile; rebuild after configuration changes.",
-        "Both routes use the same merger. It replaces only phone_mod_ triggers and prepends the supplied narrator bridge once in AI > Story > How to Use the Narrator. Other world fields are retained. A different existing phone bridge is a review error: compare it before attempting an upgrade."
+        "1. Extract the creator ZIP on your computer. Open its textphone-for-voyage folder. You should see the build folder inside it.",
+        "2. In Voyage, make a test copy using More > Remix on the source world, or More > Duplicate on your own world. Give the copy a TEST__ name and confirm you are editing that copy.",
+        "3. In the test copy's Studio, select Content, then the top-level Content entry in the left tree. The breadcrumb should read Content. Select View JSON if the editor shows a form.",
+        "4. Select Download initial GameState JSON above the editor. Keep this complete export unchanged as your backup. It must be the whole world, not a running save or just the Triggers section.",
+        "5. On your computer, open build/generic-phone-installer.html from the extracted package in your browser.",
+        "6. Under Original world JSON, choose the complete export saved in step 4.",
+        "7. Select Prepare updated world. Review the result and record counts. If an error appears, stop here and resolve it; do not install a partial result.",
+        "8. Select Download updated world JSON. Keep this new file separate from your original backup. This is the complete world with TextPhone added.",
+        "Next: follow Add the result in Voyage on the next page, using the NEW file from step 8. The merge has not yet changed your live world."
       ],
-      "code": "node native/merge-world.mjs local-worlds/original.json\n  build/generic-phone-mod.json local-worlds/with-phone.json",
-      "note": "Enter that command on ONE line in your terminal. The result is still a local file: nothing has been uploaded, installed or published yet."
+      "note": "The merger updates phone_mod_ triggers and adds the narrator bridge while retaining other world fields. A different existing phone bridge requires review. Use only one phone profile per world.",
+      "paragraph_spacing": 7
     },
     {
       "title": "Add the result in Voyage",
@@ -79,9 +83,9 @@
         "1. Open with-phone.json in a text editor and copy its entire contents. For the browser route, use Copy complete JSON or open the downloaded file. Do not copy the partial build/*-phone-mod.json: it contains only phone trigger records.",
         "2. Return to that test copy in Voyage Studio. Select Content, then the top-level Content entry so the breadcrumb is just Content. Choose View JSON if the editor is in form mode. Confirm you are in the complete initial GameState editor, not a single trigger or a running save editor.",
         "3. Click inside the JSON text, press Ctrl+A (Cmd+A on macOS) while that editor is focused, and paste the complete prepared JSON. Use Save in the Studio toolbar. This is an editor replacement using the merged complete file, not a file upload or a Mods > Apply step.",
-        "4. Reload Studio, return to Content root and download the saved initial GameState JSON as local-worlds/saved-world.json. Run the comparison command below. Success means the saved complete data matches the prepared file; key order and indentation are ignored. A mismatch needs review before a gameplay test.",
+        "4. Reload Studio and download the saved complete world again. Compare it with your prepared file before playtesting. With the source project, use the command below; without it, use a JSON-aware comparison tool. Review any differences before continuing.",
         "5. Start a fresh game from the test world. Name and record the save as a test where the interface allows it. Send phone, then phone store, then a shortcut actually displayed on Home. Open each configured app, test its directory and toggles, and continue ordinary play. Check stored state as well as the narrator’s description of consequences.",
-        "World-definition changes do not migrate existing saves. Native Mods > Apply is not verified for this release. The merger does not buy items, deduct currency or deliver messages; those outcomes remain with the host world and narrator. Remove unneeded test saves after preserving results; retain a test world only with a recorded reason."
+        "Existing saves are not automatically updated. Use the supplied merger for this release. Purchases, payments and messages remain the responsibility of the world and narrator."
       ],
       "code": "node native/verify-world.mjs local-worlds/with-phone.json\n  local-worlds/saved-world.json",
       "note": "Enter the comparison command on ONE line. Without Node, compare the prepared and saved complete JSON in a JSON-aware diff tool; counts alone cannot establish full equality."
@@ -173,7 +177,7 @@
           "Starts off. Enable after connecting a suitable host time system."
         ]
       ],
-      "note": "The switch controls this module. Independent world lore and narration may still mention the service. Do not treat it as a guaranteed narrative ban. The six new enablement tests run the generated scripts offline; the new master switch has not yet been exercised live."
+      "note": "The switch controls this module. Independent world lore and narration may still mention the service. Do not treat it as a guaranteed narrative ban."
     },
     {
       "title": "Add a custom app",
@@ -282,14 +286,14 @@
       "paragraphs_after": [
         "To enable Clock, find app id clock in your profile config and set enabled:true. Its supplied public visibility then allows downloading. Add clock to initialInstalledIds only if it should start installed in new games. Rebuild the mod and installer. LC installation alone does not configure the connection.",
         "For an optional clock adapter, write a small public record such as storage.public_clock = {date:\"2040-05-03\", time:\"09:20\"}, then set clockStorageKey:\"public_clock\". Keep that record short: at most 1000 serialized characters are included. The host adapter must update it before the relevant phone turn; this module does not infer a civil date from game-tick.",
-        "Clock Alarms is a generated view, not a new scheduler. If your world requires dependable alarms, connect an existing authoritative event system and verify both the stored event and its later firing. An attractive generated alarm list is insufficient evidence."
+        "Clock Alarms is a generated view, not a new scheduler. If your world requires dependable alarms, connect an existing authoritative event system and verify both the stored event and its later firing. An attractive generated alarm list is insufficient evidence.",
+        "To advance to a specific time, enter Advance time to [time] in the normal story input, replacing [time] with your target time. To wait a duration, enter Wait [number] hours, replacing [number] with the hours to pass. The Clock Time page displays these instructions. The host handles time passage and intervening events."
       ],
-      "note": "There is no inventory-based device gate. Renaming a player can create a different phone key. Native multiplayer attribution is unsupported; offline per-name state isolation is not multiplayer support.",
+      "note": "There is no inventory-based device gate. Renaming a player can create a different phone key. Multiplayer is unsupported.",
       "paragraphs": []
     },
     {
-      "title": "Build, edit and understand the runtime",
-      "code": "node native/build-mod.mjs config/generic-phone.json build/custom-mod.json\nnode native/merge-world.mjs original.json build/custom-mod.json new-world.json\nnode --test test/*.test.mjs",
+      "title": "Code and integration points",
       "table": [
         [
           "Source / public interface",
@@ -324,7 +328,7 @@
         "The builder emits phone_mod_config_* and phone_mod_data_* records as JSON inside inert script comments, read with JSON.parse. Runtime triggers use action-text conditions, planning phase and party scope. They use the documented storage, triggers, check, effects and log surfaces; they do not evaluate generated code.",
         "Only edit readable source/configuration, then rebuild. Deployment scripts remove indentation/comments to fit native limits; complete world exports stay pretty-printed. In Studio the generated records are under Content → Mechanics → Advanced → Triggers."
       ],
-      "note": "No npm dependencies are required. Node 20+ is for rebuilding and the CLI merger, not the Voyage runtime. The supplied HTML installer needs no Node installation, but its browser UI could not be live-tested in the authoring environment.",
+      "note": "These source files are in the generic GitHub project. The creator package contains your editable profile and the already-built installer.",
       "paragraphs": []
     },
     {
@@ -372,11 +376,11 @@
       "paragraphs": []
     },
     {
-      "title": "Test the integration, not just the text",
+      "title": "Check your installation and troubleshoot",
       "paragraphs": [
-        "For every important change, compare four layers: the persisted phone state, the emitted instruction, the visible reply and the host’s resulting state. A correct registry does not prove the narrator showed the requested screen; a narrated purchase does not prove the inventory or currency is correct.",
-        "Use fresh saves for different starting defaults. Exercise both sides of each setting: paired/single, visible/hidden, before/after reveal, removable/protected, known/public/curated, blocked/allowed and area/default messages. Test a real player request after opening a page, and check that browsing did not accept, buy, hire or travel.",
-        "Retain failed trials. A later correct reply does not erase an omitted screen or invented record. Recheck when the model, world guidance, source version or Voyage renderer changes."
+        "1. Start a fresh game. Enter phone, open an app using its displayed shortcut, then try phone store. Close and reopen the save to check that installed apps and preferences persist.",
+        "2. Check that the world's original NPCs, locations, quests and lore are still present. After configuration changes, check both sides of the options you changed, such as allowed/blocked delivery or before/after a hidden-app reveal.",
+        "3. For purchases and other important actions, check the game's actual inventory, currency or quest state. A narrated success is not always a recorded result."
       ],
       "table": [
         [
@@ -408,7 +412,8 @@
           "Use the verified complete-export merge route until Mods → Apply is separately checked."
         ]
       ],
-      "note": "The final release verification sheet lists the actual test results and remaining limitations. No deterministic transaction veto, alarm scheduling guarantee, fixed-width handset frame or universal model compliance is claimed."
+      "note": "Use a test copy and keep the original export. Existing saves are not automatically upgraded; multiplayer is unsupported. Normal narration continues and browsing may advance story time.",
+      "paragraph_spacing": 7
     },
     {
       "title": "Optional improvements and sources",
@@ -441,106 +446,7 @@
           "https://discord.com/channels/903327676884979802/1492193981646242083"
         ]
       ],
-      "note": "Source basis: previously acquired Latitude documentation and production Studio/runtime observations, September 2026, engine 36. Prompt/context guidance was consulted before changing consumers. The module is independently authored integration code, not an official Latitude feature or guarantee. MIT covers the original TextPhone code and documentation. Third-party world material and assets remain separate and are not relicensed by this project."
-    },
-    {
-      "title": "Verification: controls and configuration",
-      "lead": "0.5.0 | Bounded production trials and offline tests",
-      "paragraphs": [
-        "Tested on production Voyage engine 36 with a Living Continuity host; Story DeepSeek 3.2, Character Moderate, State Ultra. Results concern this integration and configuration. They are not a guarantee for another model or world."
-      ],
-      "table": [
-        [
-          "Feature",
-          "Evidence and result"
-        ],
-        [
-          "Single / paired Home",
-          "Saved setting and exact emitted rows pass. Paired rows rendered correctly; later single-column requests sometimes still rendered paired. Visible behavior is inconsistent."
-        ],
-        [
-          "Dynamic apps / shortcuts",
-          "Live install, remove and reinstall changed the registry. A new app whose preferred key was occupied received a different key; typing that key opened it."
-        ],
-        [
-          "Protected apps",
-          "Core Store refusal displayed correctly. Custom removable:false retained the app, but narration falsely claimed uninstall, including after a placement retry."
-        ],
-        [
-          "Known / public / curated",
-          "Controlled native lists exercised all three policies. Unknown businesses were filtered only in the known app; a separate public list and curated subset remained independent."
-        ],
-        [
-          "Per-app delivery",
-          "Live blocked/unblocked apps and distinct refusal messages passed. Area-specific wording took precedence. Whole-location fallback and missing-address branches also passed offline."
-        ],
-        [
-          "Hidden downloads",
-          "Live premature install refused; trigger grant made the download available; explicit install then succeeded. Immediate reveal narration was wrong. Known-entity reveal also passed offline."
-        ],
-        [
-          "Custom activity pages",
-          "Live shortcut and phone choose routed the intended page. It waited for a choice, but invented an invalid contact and controls. Routing passes; generated choice quality is limited."
-        ],
-        [
-          "Persistence",
-          "A fresh tab reopened the same saved game; layout, installed apps, reveals and shortcuts matched exactly."
-        ],
-        [
-          "Clock / location adapters",
-          "Native time/location pages were exercised. Optional clockStorageKey passed offline; no direct structured LC clock adapter is configured in the supplied profile."
-        ]
-      ],
-      "note": "Player layout commands are distinct from creator configuration options. Directory policy, protection, delivery and visibility are edited in configuration and rebuilt. Testing retains failed replies rather than counting correct script state as a complete visual pass."
-    },
-    {
-      "title": "Verification: scope and remaining limits",
-      "paragraphs": [
-        "All nine world-profile apps and their configured pages were exercised. Trials covered messaging/jobs/calls, time/alarms, maps/directions, food menus/orders, shopping browse/cart/orders/stores, social profiles/messages, responder listings/hiring inquiries and restricted marketplace account/listings. Browsing and explicit follow-up were checked separately.",
-        "Two quote-to-confirmation purchase trials produced the expected native currency deductions only after explicit confirmation. No automatic job acceptance or responder hire was established in those browse/inquiry trials. Delivery arrival, long-term order memory, alarm firing, relationship outcomes and the complete employment lifecycle are host gameplay, not proven by these tests.",
-        "Observed model failures include omitted screens, retained paired rows after a single-column request, false removal notices, lost field labels, invented alarm defaults, unauthored account routes, invented controls and a wrong app inventory description that survived reinstall. A requested tracking quest was not created. No atomic transaction guard or authoritative generated ledger is provided.",
-        "The final source passes 72 offline checks: 23 current native-script checks, three complete-export merge checks, two synthetic installer-event checks and 44 retained prototype/component checks. Current repositories contain 19 generic checks and 38 customized checks, including two saved-readback verifier checks. These are offline checks, not native platform proof. The older 44 checks are historical evidence, not proof of the current native display.",
-        "The complete-export merge route was applied to the private test world and its complete saved JSON matched the generated result after reload. Existing host content was preserved. The same merge code and generic profile were tested offline. Native Mods → Apply and public mod publication were not validated.",
-        "The local HTML installer's merge logic and event flow passed synthetic checks. Browser policy blocked opening its local file in the authoring environment, so its live browser interface was not verified. The command-line route uses the same tested merger. A requested narrow viewport did not change the observed browser dimensions; mobile wrapping remains unverified.",
-        "Multiplayer attribution is unsupported. The adapter leaves phone state unchanged when there is not exactly one attributable player; independent-name offline checks do not establish multiplayer support. Older phone saves are not automatically migrated. Revalidate after changing the host instructions, model, routing, catalogue or platform renderer."
-      ],
-      "note": "Use this as a configurable narrative interface with known presentation limits. Exact visible output and durable service records require further platform/host integration; those guarantees are not implied by the package."
-    },
-    {
-      "title": "Vanilla compatibility and hidden Clock",
-      "paragraphs": [
-        "September 30, 2026: the distributed complete-export merger was applied to a fresh vanilla remix of source revision 176. The native saved full world matched the prepared output. All 63 host triggers, 227 locations and 19 starts were preserved; 23 phone records and the exact narrator prefix were added.",
-        "The new single-player vanilla save used Sonnet 4.5 Story with High character and state settings. This trial used the predecessor hidden-download configuration. The new master enabled switch is tested offline only; no native deployment or visual guarantee for it is claimed.",
-        "Initial Home displayed the four configured apps without Clock. An explicit phone install Clock request was refused in the saved registry and emitted Story instruction, but narration falsely claimed installation. The next Home repeated the invented Clock icon. Hiding an app controls the registry, not every sentence the model may generate.",
-        "The release has 38 world-project checks and 19 generic-project checks, including every app independently off, all apps off, App Store off, stale active selection, invalid flags and reveal resistance. Source configurations remain editable; generated artifacts include only enabled apps."
-      ],
-      "table": [
-        [
-          "Check",
-          "Result"
-        ],
-        [
-          "Installation/readback",
-          "Pass: exact host preservation and saved-output equality."
-        ],
-        [
-          "Hidden Clock state",
-          "Pass: absent from initial installed IDs and unrevealed download catalogue."
-        ],
-        [
-          "Hidden Clock visible refusal",
-          "Fail: narration claimed success despite refusal; Home carried it forward."
-        ],
-        [
-          "Creator enablement",
-          "Offline verified for both profiles. Live time accuracy/adapter not tested."
-        ],
-        [
-          "Other vanilla coverage",
-          "Meal directory and numbered menu selection worked; a permitted shopping-app installation opened its correct service menu. Final native state retained the installation, unchanged currency and one phone inventory item. Other service consequences were not retested here."
-        ]
-      ],
-      "note": "Native Mods > Apply, automatic save migration and multiplayer remain unverified or unsupported as stated. No new alarm scheduler or access to Voyage's native clock is provided."
+      "note": "TextPhone is independently authored and is not an official Latitude feature. MIT covers its original code and documentation; third-party world material remains separate."
     },
     {
       "title": "Creator installation checklist",
@@ -549,7 +455,7 @@
       ],
       "checklist": [
         "Preserve the original export; create and record a clearly named test remix.",
-        "Choose one profile and replace synthetic catalogue entries where needed.",
+        "Use the supplied profile, or customize it for your world before rebuilding.",
         "Use exact native location/area IDs and distinct app names and IDs.",
         "Set starting apps, discovery policy and each app’s delivery messages.",
         "Rebuild both the mod JSON and HTML installer after configuration changes.",
@@ -558,7 +464,7 @@
         "Start a fresh save; open every app/page and test each chosen toggle.",
         "Test reveal before/after, install/remove, shortcuts and save/reload.",
         "Check narration AND saved state for consequential actions.",
-        "Read the verification limits before sharing or using the profile."
+        "Review the troubleshooting and gameplay limitations before sharing."
       ]
     },
     {

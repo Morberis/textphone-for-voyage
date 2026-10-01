@@ -41,3 +41,12 @@ test('protected custom app keeps its registry entry and puts its outcome before 
  assert.ok(result.phone.installedIds.includes('protected_app'));
  assert.ok(result.text.indexOf('Protected App is a core app and remains installed.')<result.text.indexOf('Messages - Installed'));
 });
+
+test('Clock explains time requests without writing the host clock',async()=>{
+ const config=structuredClone(base);config.clockStorageKey='public_clock';config.apps.find(app=>app.id==='clock').enabled=true;config.initialInstalledIds.push('clock');
+ const f=await fixture(config);f.storage.public_clock={date:'2040-05-03',time:'09:20'};
+ f.run('phone open Clock');const view=f.run('phone view time');
+ assert.match(view.text,/Advance time to \[time\]/);assert.match(view.text,/Wait \[number\] hours/);
+ assert.match(view.text,/normal story input/);assert.match(view.text,/Replace \[time\]/);assert.match(view.text,/Replace \[number\]/);assert.match(view.text,/ordinary story requests/);
+ f.run('Wait 2 hours');assert.equal(f.storage.public_clock.time,'09:20');
+});
