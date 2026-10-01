@@ -3,11 +3,12 @@
   "pages": [
     {
       "title": "A phone inside the story",
-      "lead": "TextPhone 0.6.0 | Creator and API guide",
+      "lead": "TextPhone 0.7.0 | Creator and API guide",
       "paragraphs": [
         "Give players a phone they can open in chat: installed apps, changing shortcuts, an App Store, nested business lists and narrator-generated service pages. A restaurant can lead to its menu, a job board to an offer, and a contact app to a conversation while the surrounding game continues.",
         "Scripts own the installed-app list, shortcuts, selected app, configured directory entries, discovery filters, layout preference and reveal flags. The narrator presents those screens and generates page contents. The host game owns purchases, items, messages, appointments, contracts, quests and their consequences.",
-        "This is a single-player narrative interface. It is not a separate web app, a fixed-width phone image, a transaction engine or an authoritative alarm scheduler. The current adapter leaves phone state unchanged when it cannot identify exactly one player."
+        "This is a single-player narrative interface. It is not a separate web app, a fixed-width phone image, a transaction engine or an authoritative alarm scheduler. The current adapter leaves phone state unchanged when it cannot identify exactly one player.",
+        "New in 0.7.0: discuss and approve custom skills or abilities, then practice them through ordinary gameplay. The example profile provides a Workshop app; creators can place these pages in another app."
       ],
       "table": [
         [
@@ -46,22 +47,121 @@
       "note": "Suggested first test: phone → phone store → phone open Maps → phone view nearby. Ordinary narration and the host clock continue; browsing can consume story time."
     },
     {
+      "title": "Install as a Voyage mod",
+      "lead": "Use the complete native mod file. No local merger or Node installation is needed.",
+      "paragraphs": [
+        "1. Export a complete backup of your world. Make a named test copy before adding TextPhone. Use only the customized profile for Your Power Is What; adapt the generic profile for other worlds.",
+        "2. Open Voyage Creator Studio. In the content chooser, select Mods, then Create Mod. Open Publish, give it a clear name and use Save mod. Keep it Private while preparing it.",
+        "3. Open the supplied build/generic-phone-voyage-mod.json in a text editor and copy all of it. This is the complete mod draft; the smaller *-phone-mod.json in the source repository is a build input, not a whole editor replacement.",
+        "4. In the new mod's Studio, select Content and the top-level Content entry. Use View JSON if needed. Replace the entire initial GameState editor with the complete mod draft and select Save mod.",
+        "5. Reload the mod and confirm its content saved. Open your test world's Studio > Mods. Under My mods, choose Add draft for this TextPhone mod, then select Apply.",
+        "6. Reload the world and check its content before starting a fresh test game. Open phone, its App Store and the workshop choices. Keep your original export for rollback."
+      ],
+      "note": "For a world you intend to publish, Voyage requires attached mods to be published too. Complete your mod's rating and publishing controls before publishing the world. Do not attach both generic and customized TextPhone."
+    },
+    {
+      "title": "Native compatibility and edited worlds",
+      "lead": "Check both the installed interface and the host rules it uses.",
+      "paragraphs": [
+        "TextPhone adds phone_mod_ records and four AI instruction entries. Existing world content should remain intact. In AI > Story, keep the world's existing sections alongside TextPhone Interface and TextPhone Workshops.",
+        "In AI > Advanced > Action Info and Learned Abilities, inspect custom instructions after Apply. If you already use those fields, preserve your guidance and include the TextPhone Workshops block once. Local edits and other mods can affect which version survives; the offline installer can combine these blocks and report conflicts.",
+        "A source-linked remix can reapply inherited world data when mods are applied. If unrelated music, image settings or world guidance changes, restore your backup and use a fresh standalone world containing your complete exported content. Detach only the inherited source-world mod reference in that standalone copy; retain any real dependencies your world needs.",
+        "The complete native mod draft carries required Voyage defaults so Studio can save it. It is a mod definition for a new Mod, not a replacement for your populated world. Use the complete-world installer when you need explicit field-preserving reconciliation."
+      ],
+      "note": "Installation in a standalone Your Power Is What copy is supported. Arbitrary mod stacks, multiplayer and existing-save migration require their own compatibility checks."
+    },
+    {
+      "title": "Workshop a skill or ability",
+      "lead": "Discuss a design, approve it, then practice it in the story.",
+      "paragraphs": [
+        "1. Open the phone and its workshop app. Choose Ability creation for a new purchasable power, Skill creation for a trainable skill, or Technique creation for an application of an existing power.",
+        "2. Describe what you want it to do, its theme, scope and limits. Discuss changes in chat. The workshop keeps the discussion on the phone at your current location.",
+        "3. Review the complete proposal: Name, Effect, Limits, Costs and Practice. Abilities and techniques also include a Native card: the concise description proposed for the purchase screen.",
+        "4. Enter the exact phone confirm command shown for the latest draft. This saves that revision as an approved design. A design is not yet a learned skill or purchased ability.",
+        "5. Enter practice skill [name] or practice ability [name], replacing [name] with the approved name. Technique practice uses practice ability. This closes the design interface and requests an ordinary exercise in the world.",
+        "6. Practice again when appropriate. Accept an actual native skill offer with Learn, or review a native ability offer and purchase it through the normal ability controls. Check the offered description before buying."
+      ],
+      "note": "Workshop guidance keeps narration focused on design, but cannot pause the whole engine. Ticks, time, resources and native events may still advance. Use it outside urgent scenes."
+    },
+    {
+      "title": "Practice and native acquisition",
+      "lead": "Voyage owns learning eligibility, offers and purchase costs.",
+      "paragraphs": [
+        "There is no guaranteed number of practice attempts. A well-defined approved design gives the narrator and native generation systems a consistent target; it does not force a grant or change the world learning probabilities.",
+        "An ability offer is a candidate for normal purchase. Available points, prerequisites and other native rules still apply. The proposed Native card helps carry the agreed meaning forward, but the generated offer can summarize or change it.",
+        "A skill offer uses Voyage's native Learn interaction. The resulting character skill may store its name and governing attribute without the full workshop description. TextPhone retains the approved scope separately and supplies it when that skill is named in an ordinary action.",
+        "Narration saying that something was learned is not the native offer. Check the real offer or Character panel. If no offer appears, improve the exercise or continue appropriate practice; do not assume the mod promises an unlock.",
+        "Use phone workshop cancel to close an unfinished discussion. The currently saved approved design remains available for practice. A newer workshop replaces the active session; the player's previously acquired native abilities and skills remain owned by Voyage."
+      ],
+      "note": "The phone supports one current workshop per identified single player. Keep a separate note if you want an archive of older design specifications."
+    },
+    {
+      "title": "Add workshop pages to an app",
+      "lead": "Use any suitable app; Pulse is only the customized placement.",
+      "paragraphs": [
+        "Add a workshop page to an enabled app's pages array. Use distinct names so Ability creation and Skill creation remain separate choices. The app must be installed before its pages can be opened.",
+        "workshopKind is ability, skill or technique. guidance describes that page's world-specific expectations: power theme, learning constraints or what existing power a technique should extend. Keep host mechanics authoritative.",
+        "Rebuild the mod and install the resulting version using the installation or upgrade steps. Removing all workshop pages omits the workshop handlers and their instruction blocks. Setting an app's enabled field to false disables that app."
+      ],
+      "code": "{\n  \"name\": \"Skill creation\",\n  \"kind\": \"workshop\",\n  \"workshopKind\": \"skill\",\n  \"guidance\": \"Develop a trainable skill suited to this world.\"\n}\n\n{\n  \"name\": \"Ability creation\",\n  \"kind\": \"workshop\",\n  \"workshopKind\": \"ability\",\n  \"guidance\": \"Fit the character and existing power scale.\"\n}",
+      "note": "Each app allows up to 12 pages. Workshop pages open with phone view PAGE; they are not startsActivity pages."
+    },
+    {
+      "title": "Workshop API and integration",
+      "lead": "Versioned consent state, captured model output and native handoff.",
+      "table": [
+        [
+          "Surface",
+          "Contract"
+        ],
+        [
+          "Workshop state",
+          "storage.phone_mod.players[JSON.stringify(playerName)].workshop; schemaVersion 1, owner, kind, sequence, revision and status."
+        ],
+        [
+          "Status",
+          "drafting → review → requested → closed. requested means an approved design, not native acquisition."
+        ],
+        [
+          "Draft",
+          "name (80), effect (1200), limits (1000), costs (600), practice (600); nativeCard (1200) for new ability/technique sessions. Limits are TextPhone characters, not native engine limits."
+        ],
+        [
+          "Approval",
+          "approved contains requestId, owner, kind, sequence, revision and the full draft. Confirmation requires the current sequence.revision; duplicate confirmation creates no new request."
+        ],
+        [
+          "Model capture",
+          "A complete TEXTPHONE DRAFT sequence.revision block through END DRAFT. Ordered unique fields are required. Defined bold labels and hyphen/en-dash/em-dash separators are accepted; field values remain intact."
+        ],
+        [
+          "Instruction placement",
+          "Story: TextPhone Interface and TextPhone Workshops sections. Action Info and Learned Abilities: delimited TextPhone Workshops blocks in custom."
+        ],
+        [
+          "Native boundary",
+          "Scripts emit context and retain the approved design. They do not call an ability/skill generator, grant points, force a native offer or directly purchase the result."
+        ]
+      ],
+      "note": "Keep the metadata, capture and planning handlers together. Editing only displayed draft text does not update the saved approval."
+    },
+    {
       "title": "Customize and rebuild",
-      "lead": "Optional: skip this page when using the supplied installer unchanged.",
+      "lead": "Optional: edit apps and rebuild with Node.js 20 or newer.",
       "paragraph_spacing": 7,
       "paragraphs": [
         "1. Download the full generic source from github.com/Morberis/textphone-for-voyage using Code > Download ZIP. Extract it on your computer. Node.js 20 or newer is required for rebuilding.",
         "2. Copy config/generic-phone.json from this creator package into the source project's config folder. Open that file in a text editor. The following pages explain app settings, examples and APIs.",
         "3. Make your changes and save the configuration. Keep app IDs stable, use exact world location IDs, and give new apps distinct IDs and labels.",
-        "4. Open a terminal in the source folder containing package.json. Run the two commands below, entering each command on ONE line. No npm install or API key is needed.",
-        "5. Use the new build/generic-phone-installer.html to prepare a fresh complete world export. Follow the merge and installation pages again, then check your changes in a fresh game."
+        "4. Open a terminal in the source folder containing package.json. Run the three commands below, entering each command on ONE line. No npm install or API key is needed.",
+        "5. Build a complete native mod draft with the third command, then use that file in your mod's Studio Content editor. The HTML installer remains available for combining edited host guidance or installing directly into a full world export."
       ],
-      "code": "node native/build-mod.mjs config/generic-phone.json\n  build/generic-phone-mod.json\n\nnode native/build-installer.mjs build/generic-phone-mod.json\n  build/generic-phone-installer.html",
-      "note": "Examples live in the source project's examples folder. Edit configuration and readable source, then rebuild; direct changes to a generated installer are overwritten by the next build."
+      "code": "node native/build-mod.mjs config/generic-phone.json build/mod.json\n\nnode native/build-installer.mjs build/mod.json build/install.html\n\nnode native/build-draft.mjs build/mod.json build/voyage-mod.json",
+      "note": "Run each displayed command as one line. The outputs are build/mod.json (partial build), build/install.html (local world installer), and build/voyage-mod.json (complete native Mod draft). Generated files are replaced when you rebuild."
     },
     {
       "title": "Merge your world export",
-      "lead": "Adapt the included example configuration to your world before using this installer.",
+      "lead": "Fallback or upgrade reconciliation: combine your complete world with TextPhone locally.",
       "paragraphs": [
         "1. Extract the creator ZIP on your computer. Open its textphone-for-voyage folder. You should see the build folder inside it.",
         "2. In Voyage, make a test copy using More > Remix on the source world, or More > Duplicate on your own world. Give the copy a TEST__ name and confirm you are editing that copy.",
@@ -80,7 +180,7 @@
       "title": "Add the result in Voyage",
       "lead": "Install the complete merged definition into the identified test copy.",
       "paragraphs": [
-        "1. Open with-phone.json in a text editor and copy its entire contents. For the browser route, use Copy complete JSON or open the downloaded file. Do not copy the partial build/*-phone-mod.json: it contains only phone trigger records.",
+        "1. Open with-phone.json in a text editor and copy its entire contents. For the browser route, use Copy complete JSON or open the downloaded file. Do not copy the partial build/*-phone-mod.json: it contains only phone records and integration instructions.",
         "2. Return to that test copy in Voyage Studio. Select Content, then the top-level Content entry so the breadcrumb is just Content. Choose View JSON if the editor is in form mode. Confirm you are in the complete initial GameState editor, not a single trigger or a running save editor.",
         "3. Click inside the JSON text, press Ctrl+A (Cmd+A on macOS) while that editor is focused, and paste the complete prepared JSON. Use Save in the Studio toolbar. This is an editor replacement using the merged complete file, not a file upload or a Mods > Apply step.",
         "4. Reload Studio and download the saved complete world again. Compare it with your prepared file before playtesting. With the source project, use the command below; without it, use a JSON-aware comparison tool. Review any differences before continuing.",
@@ -92,19 +192,16 @@
     },
     {
       "title": "Upgrade an existing TextPhone world",
-      "lead": "Upgrade the world you currently use, keeping your own content and app settings.",
-      "paragraph_spacing": 8,
+      "lead": "Keep your app configuration and original export before changing versions.",
       "paragraphs": [
-        "1. Download the new package for the same profile: generic or Your Power is What. Extract it into a new folder. Keep the previous package until the upgrade is working.",
-        "2. In your current world's Studio, open the top-level Content entry and select Download initial GameState JSON. Keep this complete export unchanged as the rollback backup. Use this current export, not the original world from before you added TextPhone.",
-        "3. Preserve your edited config/generic-phone.json. Compare it with the new version's configuration and retain your app IDs, enabled switches, starting apps, hidden-app rules, business lists, delivery messages and clock connection. If you changed configuration, rebuild the installer using Customize and rebuild before continuing. The supplied installer contains its packaged settings; it does not automatically import your previous app configuration.",
-        "4. Make a TEST__ copy of your current world and confirm that its Content matches your backup. Keep any other world updates you have already made.",
-        "5. Open the NEW build/generic-phone-installer.html locally. Under Original world JSON, select the complete current export from step 2. Select Prepare updated world, then Download updated world JSON.",
-        "6. If the installer reports a different phone narrator bridge, stop before installation. In Studio, the affected section is Content > AI > Story > How to Use the Narrator. Preserve that entire section and compare its opening Phone interface: block with the previous package. Resolve the changed phone block before retrying; keep the rest of the world's narrator instructions.",
-        "7. Follow Add the result in Voyage to install the prepared COMPLETE JSON in the test copy, save, reload and compare the saved export. The merger replaces phone_mod_ records as one profile; it retains other world content. Do not stack another copy of the old phone triggers.",
-        "8. Start a fresh game in the test copy. Check Home, App Store, shortcuts and the apps or rules you customized. Once satisfied, repeat the same upgrade with a fresh export of your main world so intervening creator edits are retained."
+        "1. Export the complete current world and preserve its existing mod version. Keep your edited app configuration separately; an upgrade must not silently restore example apps or erase creator choices.",
+        "2. Copy your configuration into the new source release. Add the desired workshop pages and rebuild, or use the supplied customized profile if you have not changed its settings.",
+        "3. For a native installation, update your existing TextPhone mod draft with the new complete Voyage mod JSON, save it, then open the test world's Mods page and select Apply. Keep only one TextPhone profile attached.",
+        "4. Reload and export the test world. Check the phone records and AI > Story plus AI > Advanced > Action Info and Learned Abilities. Preserve your own guidance. If local edits prevent the new blocks from appearing, use the included installer on the backed-up complete world export to reconcile owned blocks; follow the numbered merge steps.",
+        "5. Open a fresh test game and check Home, App Store and the new workshop choices. Verify your enabled apps, discovery and delivery settings. Existing saves may keep an earlier script snapshot; changing the world does not prove a running save was upgraded.",
+        "6. Keep the previous mod/export until your new version works. Restore that known-good version if needed. Do not delete an existing save or reset learned skills just to update phone code."
       ],
-      "note": "Keep one TextPhone profile per world. A new installer or world revision is not proof that a running save has received the new phone code."
+      "note": "0.7.0 retains phone storage schema 1. New ability and technique drafts include a Native card; earlier approvals can use their full saved description. The standalone world installer replaces owned blocks and refuses ambiguous edited blocks or oversized combined instructions."
     },
     {
       "title": "Existing saves and rollback",
@@ -167,7 +264,8 @@
       "paragraphs_after": [
         "Use stable IDs when renaming labels. The app label is what players type; the ID owns saved installation state. Reordering the catalogue does not intentionally reassign an existing valid shortcut. A removed configuration ID is pruned from that player’s phone the next time it is processed."
       ],
-      "note": "Known means the world regards a named entity as known; it does not mean visited. The current native adapter rejects the visited listing mode. Device possession is not required and no invented device-availability flag is used."
+      "note": "Known means the world regards a named entity as known; it does not mean visited. The current native adapter rejects the visited listing mode. Device possession is not required and no invented device-availability flag is used.",
+      "lead": ""
     },
     {
       "title": "Turn any app on or off",
@@ -349,6 +447,10 @@
         [
           "mod-delivery / mod-follow-through",
           "Per-app policy checks and context for natural or generated detail requests."
+        ],
+        [
+          "Workshop modules",
+          "Versioned design, captured proposal, explicit approval, typed practice and learned-skill context."
         ]
       ],
       "paragraphs_after": [
@@ -399,7 +501,7 @@
         "Configuration bounds: 32 apps, 12 pages per app, 128 businesses per app, unique lowercase ASCII app IDs up to 48 characters, unique short app labels up to 32 characters, and one-line summaries up to 160 characters. Page names use letters, spaces and hyphens, up to 40 characters. App/page guidance is bounded to 1800 characters each. Commands are limited to 400 characters. The builder also rejects any serialized trigger above 10000 characters.",
         "Changing the starting app list or default layout affects new phone state. Existing state retains its installed IDs and chosen layout, apart from IDs removed from the current catalogue. Start a fresh game when changing profiles; legacy save migration is not provided."
       ],
-      "note": "Do not install two phone profiles together under the same namespace. Use the complete-profile merger to remove obsolete phone records. Keep unrelated trigger names outside phone_mod_.",
+      "note": "Do not install two phone profiles together under the same namespace. Use the complete-profile merger to remove obsolete phone records. Keep unrelated trigger names outside phone_mod_. Workshop state and commands are documented in Workshop API and integration.",
       "paragraphs": []
     },
     {
@@ -481,18 +583,18 @@
         "Check these steps on your own test remix. Checkmarks record your review, not a guarantee of model behavior."
       ],
       "checklist": [
-        "Preserve the original export; create and record a clearly named test remix.",
-        "Use the supplied profile, or customize it for your world before rebuilding.",
-        "Use exact native location/area IDs and distinct app names and IDs.",
-        "Set starting apps, discovery policy and each app’s delivery messages.",
-        "Rebuild both the mod JSON and HTML installer after configuration changes.",
-        "Paste the complete merged JSON at Content root; Save, reload and verify-world.",
-        "Confirm original lore, NPCs, locations, quests and host triggers remain.",
-        "Start a fresh save; open every app/page and test each chosen toggle.",
-        "Test reveal before/after, install/remove, shortcuts and save/reload.",
-        "Check narration AND saved state for consequential actions.",
-        "Review the troubleshooting and gameplay limitations before sharing.",
-        "For an upgrade, preserve my current world export and edited configuration, then check the updated world in a fresh game."
+        "Preserve the original complete world export and identify a test copy.",
+        "Choose one phone profile; preserve your app IDs and creator configuration.",
+        "Set enabled apps, starting downloads, discovery and delivery policies.",
+        "Install the complete native Mod draft into a Mod, then Add draft and Apply to the world; or use the complete-world installer.",
+        "Reload and verify the installed version, phone records and AI guidance.",
+        "Confirm original lore, NPCs, locations, quests and host rules remain.",
+        "Start a fresh test game and check Home, App Store and configured pages.",
+        "Check separate Ability creation and Skill creation choices.",
+        "Review a complete proposal and confirm only its current revision.",
+        "Check reveal, installation, shortcuts and save/reload behavior.",
+        "Review the gameplay limits and native offer before sharing or purchase.",
+        "For an upgrade, retain the previous mod and export until the new version is accepted."
       ]
     },
     {
@@ -505,12 +607,21 @@
         "Copyright (c) 2026 Morberis",
         "Permission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:",
         "The above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.",
-        "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE."
+        "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.",
+        "Community credit: Guappa's unofficial Voyage wiki informed the concise ability-description guidance and standalone-world mod workaround. TextPhone's reviewed Native card, consent workflow and installer are our adaptations; the wiki does not guarantee their behavior."
       ],
       "links": [
         [
           "Latitude Terms of Service",
           "https://help.aidungeon.com/terms-of-service"
+        ],
+        [
+          "Guappa's Voyage wiki: abilities",
+          "https://wiki.unofficial.voyage/mechanics/abilities"
+        ],
+        [
+          "Guappa's Voyage wiki: modding",
+          "https://wiki.unofficial.voyage/mods/modding"
         ]
       ]
     }

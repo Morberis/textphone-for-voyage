@@ -1,18 +1,25 @@
-TEXTPHONE CREATOR PACKAGE 0.6.0
+TextPhone for Voyage 0.7.0
 
-Open Creator-Guide.pdf. Use the contents to find Merge your world export,
-then Add the result in Voyage. The installer is:
-  build/generic-phone-installer.html
+INSTALL AS A MOD
+1. Preserve a complete world export and use a test copy.
+2. Voyage Creator Studio > Mods > Create Mod. Name it, then Save mod.
+3. Open build/generic-phone-voyage-mod.json and copy all of it.
+4. In that MOD's Content root JSON editor, replace all text and Save mod.
+5. Reload; in your WORLD's Mods page choose Add draft for it, then Apply.
+6. Reload and check the world; start a fresh test game.
 
-To customize apps, use config/generic-phone.json and follow Customize and
-rebuild. API, settings and app examples remain in the guide. Download the
-generic source and example files from https://github.com/Morberis/textphone-for-voyage
-No Node or source files are needed to run the unchanged browser installer.
+Creator-Guide.pdf has detailed installation, custom apps, API, upgrade and rollback steps.
+The HTML installer is a local fallback for edited worlds and instruction conflicts.
+The native mod JSON must not replace a populated WORLD's Content root.
 
-Keep your original world export. This release uses the complete-world merger.
-Native Add mod > Apply is not the installation method for this release.
+PLAYER WORKFLOW
+Open Workshop in the phone. Choose Ability creation or Skill creation.
+Discuss, review, then use the displayed phone confirm command.
+Enter practice ability [name] or practice skill [name] with the approved name.
+Practice may need repeating; Voyage decides native offers and learning.
+Approval does not grant an ability or skill.
 
-The generic profile includes example businesses. Replace them with your world's real locations before installation.
-
-UPGRADING AN EXISTING TEXTPHONE WORLD
-Read Upgrade an existing TextPhone world and Existing saves and rollback in Creator-Guide.pdf. Start from a fresh complete export of your CURRENT world. Preserve your edited configuration and rebuild the new installer if you customized it. The packaged installer replaces old phone settings with its own profile. Keep your backup; test in a copy before updating your main world. Running saves are a separate migration.
+SOURCE / LOCAL DEVELOPMENT
+https://github.com/Morberis/textphone-for-voyage
+Node.js >=20 is for source builds and offline tests, not ordinary installation.
+MIT applies to TextPhone code. Third-party world/platform content is separate.

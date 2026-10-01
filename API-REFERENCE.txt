@@ -64,7 +64,7 @@ App data contract
   Optional: enabled (boolean; default true), preferredShortcut, summary, guidance, openPage,
   appStoreVisibility ('public' or 'triggered'), removable, unlockKnownEntity,
   directory, delivery, and source-reference metadata.
-  Page: name, kind ('generated' or 'directory'), guidance; optional
+  Page: name, kind ('generated', 'directory' or 'workshop'), guidance; optional
   startsActivity (generated only) and contextReader ('clock' or 'location').
   openPage names an existing non-activity page. It can open a directory.
   Directory: heading, contentLabel, currency, storeListingMode, entries;
@@ -102,3 +102,20 @@ screen, transaction veto, authoritative order cache or alarm scheduler.
 Clock time controls
 To advance to a specific time, enter Advance time to [time] in the normal story input, replacing [time] with your target time. To wait a duration, enter Wait [number] hours, replacing [number] with the hours to pass. The Clock Time page displays these instructions. The host handles time passage and intervening events.
 Clock remains disabled until enabled and connected by the creator.
+
+Workshop API (0.7.0)
+  Page kind: workshop; workshopKind: ability | skill | technique.
+  Open with phone view PAGE; submit only the displayed phone confirm S.R.
+  phone workshop cancel closes the session; an approved design is retained.
+  practice skill NAME / practice ability NAME uses the currently approved design.
+  Techniques use practice ability. These are normal gameplay actions, not grants.
+  phone.workshop: schemaVersion1,owner,kind,sequence,revision,status,draft,approved.
+  Status requested means approval was saved, never native acquisition.
+  Draft bounds: name80,effect1200,limits1000,costs600,practice600,nativeCard1200.
+  New ability/technique sessions require nativeCard; legacy approvals remain valid.
+  Approval receipt includes requestId,owner,kind,sequence,revision,draft.
+  Capture validates one current complete ordered draft block; no model code executes.
+  Storage schema stays1. Exactly one player is required.
+  Story named sections plus ActionInfo/LearnedAbilities custom blocks are required.
+  The installer validates the combined5000-character fields and preserves host text.
+  Neither native offer timing nor exact generated-card wording is guaranteed.

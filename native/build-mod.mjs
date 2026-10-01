@@ -5,6 +5,9 @@ import {fileURLToPath} from 'node:url';
 import {validateAppCatalog} from '../src/phone-config-validation.mjs';
 import {selectAppStores} from '../src/phone-catalog-policy.mjs';
 import {validateDeliveryPolicy} from '../src/phone-delivery-policy.mjs';
+import {WORKSHOP_BRIDGES} from '../src/workshop-bridges.mjs';
+import * as workshopSession from '../src/workshop-session.mjs';
+import * as workshopContext from '../src/mod-workshop-context.mjs';
 
 const root=path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 export function validateConfiguration(config) {
@@ -30,7 +33,9 @@ export function validateConfiguration(config) {
     const names=new Set();
     for(const page of app.pages){
       if(!/^[A-Za-z][A-Za-z -]{0,39}$/.test(page.name)||names.has(page.name.toLowerCase()))throw Error('Invalid or duplicate page name');names.add(page.name.toLowerCase());
-      if(!['generated','directory'].includes(page.kind)||typeof page.guidance!=='string'||page.guidance.length>1800)throw Error('Invalid page kind or guidance');
+      if(!['generated','directory','workshop'].includes(page.kind)||typeof page.guidance!=='string'||page.guidance.length>1800)throw Error('Invalid page kind or guidance');
+      if(page.kind==='workshop'&&(!['ability','skill','technique'].includes(page.workshopKind)||page.startsActivity||page.contextReader))throw Error('Invalid workshop page');
+      if(page.kind!=='workshop'&&page.workshopKind!==undefined)throw Error('Workshop kind requires a workshop page');
       if(page.startsActivity!==undefined&&typeof page.startsActivity!=='boolean')throw Error('Invalid activity flag');
       if(page.kind==='directory'&&(page.startsActivity||!app.directory))throw Error('Directory requires configuration and is browse-only');
       if(page.contextReader!==undefined&&!['location','clock'].includes(page.contextReader))throw Error('Unknown context reader');
@@ -83,11 +88,31 @@ export async function buildPhoneMod(config) {
     const compact=code.split('\n').filter(line=>!line.trim().startsWith('//')).map(line=>line.trim()).filter(Boolean).join('\n');
     records['phone_mod_'+name]=trigger('phone_mod_'+name,compact,[{type:'action-text',operator:'regex',value:'\\S'}]);
   }
+  const workshops=apps.some(app=>app.pages.some(page=>page.kind==='workshop'));
+  if(workshops){
+    configRecord('phone_mod_metadata_workshop_bridges',{aiInstructions:WORKSHOP_BRIDGES});
+    configRecord('phone_mod_metadata_workshop_prompt',workshopContext.WORKSHOP_PROMPT_TEXT);
+    const baseNames=['boundedText','positiveInteger','copy','validateSession','requestId','validateWorkshopDraft'];
+    const constants='const WORKSHOP_KINDS=new Set('+JSON.stringify([...workshopSession.WORKSHOP_KINDS])+');\nconst SESSION_STATUSES=new Set('+JSON.stringify([...workshopSession.SESSION_STATUSES])+');\nconst DRAFT_FIELDS='+JSON.stringify(workshopSession.DRAFT_FIELDS)+';';
+    const parts=[
+      ['workshop-practice','mod-workshop-practice.mjs',[],['closeWorkshopSession'],['workshopContext','saveWorkshop'],'practiceWorkshopDesign(workshopContext(storage,triggers,check),storage,effects,log);','planning','action-text'],
+      ['workshop','mod-workshop.mjs',[],['beginWorkshopSession','reviseWorkshopSession','closeWorkshopSession'],['workshopContext','saveWorkshop','workshopPrompt'],'handlePhoneWorkshop(workshopContext(storage,triggers,check),storage,effects,log,triggers);','planning','action-text'],
+      ['workshop-submit','mod-workshop-submit.mjs',[],['confirmWorkshopDraft'],['workshopContext','saveWorkshop'],'submitPhoneWorkshop(workshopContext(storage,triggers,check),storage,effects,log);','planning','action-text'],
+      ['workshop-capture','mod-workshop-capture.mjs',['workshop-protocol.mjs'],['recordWorkshopDraft'],['workshopContext'],'capturePhoneWorkshop(workshopContext(storage,triggers,check),storage,check,log);','state','story-text'],
+      ['workshop-skill-context','mod-workshop-skill-context.mjs',[],[],['workshopContext'],'remindWorkshopSkill(workshopContext(storage,triggers,check),check,effects,log);','planning','action-text']
+    ];
+    for(const [id,file,deps,lifecycle,contextNames,call,phase,condition] of parts){
+      const shared=[constants,...[...baseNames,...lifecycle].map(name=>workshopSession[name].toString()),...contextNames.map(name=>workshopContext[name].toString())];
+      const code=[...shared,...await Promise.all(deps.map(source)),await source(file),call].join('\n');
+      const compact=code.split('\n').filter(line=>!line.trim().startsWith('//')).map(line=>line.trim()).filter(Boolean).join('\n');
+      records['phone_mod_'+id]={...trigger('phone_mod_'+id,compact,[{type:condition,operator:'regex',value:'\\S'}]),phase};
+    }
+  }
   for(const record of Object.values(records)){
     new vm.Script(record.script);
     if(JSON.stringify(record).length>10000)throw Error(record.name+' exceeds10000characters: '+JSON.stringify(record).length);
   }
-  return {triggers:records};
+  return {triggers:records,...(workshops?{aiInstructions:structuredClone(WORKSHOP_BRIDGES)}:{})};
 }
 
 if(process.argv[1]===fileURLToPath(import.meta.url)){

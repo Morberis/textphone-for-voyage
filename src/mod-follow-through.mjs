@@ -1,6 +1,8 @@
 // Retain app context for natural-language choices without consuming ordinary gameplay.
 export function handlePhoneFollowThrough(context, storage, effects, log) {
   if(!context||context.unsupported||context.phone.screen!=='app'||!context.app)return;
+  if(/^practice\s/i.test(context.action))return;
+  if(context.app.pages.some(page=>page.name===context.phone.page&&page.kind==='workshop'))return;
   if(/^(?:close phone|back)$/i.test(context.action)||context.openApp)return;
   const detailRequest=/^phone view (.+)$/i.exec(context.action);
   if(/^phone(?:\s|$)/i.test(context.action)&&(!detailRequest||context.app.pages.some(page=>page.name.toLowerCase()===detailRequest[1].toLowerCase())))return;

@@ -4,7 +4,7 @@ import importlib.util, html, json, re
 from reportlab.pdfgen import canvas
 from reportlab.lib import colors
 from reportlab.lib.styles import ParagraphStyle
-from reportlab.platypus import Paragraph, Table, TableStyle, Spacer, Preformatted
+from reportlab.platypus import Paragraph, Table, TableStyle, Spacer, Preformatted, Flowable
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
@@ -21,11 +21,45 @@ W,H=612,792;left=44;width=524
 def para(text,size=10.4,bold=False):
     return Paragraph(html.escape(str(text)).replace('\n','<br/>'),ParagraphStyle('p',fontName='Bold' if bold else 'Body',fontSize=size,leading=size*1.36,textColor=cyan if bold else ink,spaceAfter=7))
 
+class NumberedStep(Flowable):
+    """Keep the step badge separate from its hanging-aligned body text."""
+    def __init__(self,number,text,size):
+        super().__init__()
+        self.number=str(number)
+        self.size=size
+        self.badge_width=max(24,pdfmetrics.stringWidth(self.number,'Bold',size)+12)
+        self.badge_height=23
+        self.gap=13
+        self.body=para(text,size)
+        self.spaceAfter=10
+
+    def wrap(self,available_width,available_height):
+        self.width=available_width
+        self.body_width=available_width-self.badge_width-self.gap
+        _,self.body_height=self.body.wrap(self.body_width,available_height)
+        self.height=max(self.badge_height,self.body_height)
+        return self.width,self.height
+
+    def draw(self):
+        c=self.canv
+        badge_y=self.height-self.badge_height
+        c.setFillColor(cyan)
+        c.roundRect(0,badge_y,self.badge_width,self.badge_height,3,fill=1,stroke=0)
+        c.setFillColor(background)
+        c.setFont('Bold',self.size)
+        c.drawCentredString(self.badge_width/2,badge_y+(self.badge_height-self.size)/2+2,self.number)
+        self.body.drawOn(c,self.badge_width+self.gap,self.height-self.body_height)
+
+def body_paragraph(text,size):
+    # Only prose steps are interpreted; code, table values and bullets stay intact.
+    step=re.fullmatch(r'([1-9][0-9]*)[.)]\s+(.+)',str(text),re.DOTALL)
+    return NumberedStep(step[1],step[2],size) if step else para(text,size)
+
 def blocks(page,size=10.4):
     result=[]
     if page.get('lead'):result += [para(page['lead'],size,True),Spacer(1,6)]
     for text in page.get('paragraphs',[]):
-        result.append(para(text,size))
+        result.append(body_paragraph(text,size))
         if page.get('paragraph_spacing'):result.append(Spacer(1,page['paragraph_spacing']))
     if page.get('code'):
         code=page['code'].replace('node --test test/*.test.mjs','npm test')
@@ -38,7 +72,7 @@ def blocks(page,size=10.4):
         table=Table(rows,colWidths=([width-44,44] if page.get('contents') else [156,width-156]),hAlign='LEFT')
         table.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),('ROWBACKGROUNDS',(0,1),(-1,-1),[panel,background]),('BACKGROUND',(0,0),(-1,0),light),('LINEBELOW',(0,0),(-1,0),1,cyan),('LINEBELOW',(0,1),(-1,-1),.35,colors.HexColor('#454059')),('LEFTPADDING',(0,0),(-1,-1),7),('RIGHTPADDING',(0,0),(-1,-1),7),('TOPPADDING',(0,0),(-1,-1),6),('BOTTOMPADDING',(0,0),(-1,-1),5)]))
         result += [table,Spacer(1,10)]
-    result += [para(x,size) for x in page.get('paragraphs_after',[])]
+    result += [body_paragraph(x,size) for x in page.get('paragraphs_after',[])]
     result += [para('• '+x,size) for x in page.get('bullets',[])]
     for label,url in page.get('links',[]):
         result.append(Paragraph(f'<link href="{html.escape(url,quote=True)}" color="#C4FF00">{html.escape(label)}</link>',ParagraphStyle('link',fontName='Body',fontSize=size,leading=size*1.4,spaceAfter=7)))
@@ -68,7 +102,7 @@ def chrome(c,title,index,total,series):
     c.setFillColor(light);c.rect(left,bottom,33,top-bottom,fill=1,stroke=0)
     c.setFont('Bold',13);c.setFillColor(cyan);c.drawCentredString(left+16.5,bottom+(top-bottom-13)/2+2,str(index).zfill(2))
     c.setStrokeColor(colors.HexColor('#454059'));c.line(left,40,W-left,40)
-    c.setFont('Body',8);c.setFillColor(muted);c.drawString(left,27,'TextPhone 0.6.0 · September 2026')
+    c.setFont('Body',8);c.setFillColor(muted);c.drawString(left,27,'TextPhone 0.7.0 · October 2026')
     c.setFillColor(cyan);c.drawRightString(W-left,27,f'{index} / {total}')
     return bottom-16
 
@@ -78,7 +112,7 @@ def make_pdf(path,pages,series):
     for chunk in range(toc_count):
         selected=pages[chunk*16:(chunk+1)*16] if toc_count>1 else pages
         offset=chunk*16 if toc_count>1 else 0
-        toc_pages.append({'title':'Creator guide and reference' if chunk==0 else 'Contents continued','contents':True,'lead':series+' | Creator guide 0.6.0','paragraphs':['Local testing, configuration and Voyage installation are separate workflows. Follow the complete merge and readback steps before a fresh game.'] if chunk==0 else [],'table':[['Contents','Page']]+[[p['title'],str(i+offset+toc_count+1)] for i,p in enumerate(selected)]})
+        toc_pages.append({'title':'Creator guide and reference' if chunk==0 else 'Contents continued','contents':True,'lead':series+' | Creator guide 0.7.0','paragraphs':['Local testing, configuration and Voyage installation are separate workflows. Follow the native installation steps, or use the complete-world merger for edited worlds.'] if chunk==0 else [],'table':[['Contents','Page']]+[[p['title'],str(i+offset+toc_count+1)] for i,p in enumerate(selected)]})
     all_pages=toc_pages+pages
     c=canvas.Canvas(str(path),pagesize=(W,H));c.setTitle(series);c.setAuthor('Morberis')
     for index,page in enumerate(all_pages,1):

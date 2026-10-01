@@ -1,7 +1,7 @@
 {
   "project": "textphone-for-voyage",
-  "version": "0.6.0",
-  "documentationRevision": "2026-09-30-r7",
+  "version": "0.7.0",
+  "documentationRevision": "2026-10-01-workshops",
   "files": [
     {
       "path": ".gitattributes",
@@ -15,33 +15,38 @@
     },
     {
       "path": "API-REFERENCE.txt",
-      "bytes": 6254,
-      "sha256": "54942af74e7711ffaf592c186e809f0e39a2d4583c8fd6722dbbe99232564801"
+      "bytes": 7350,
+      "sha256": "6e8b22c9299b70898ba1a510d2ca96101c2b5dbe5120e053246bfb47a60b3409"
     },
     {
       "path": "build/generic-phone-installer.html",
-      "bytes": 64133,
-      "sha256": "4ddb622dbe9baf331f1f56850ae5e65eb42bd59d94c49cb37818406174e096ce"
+      "bytes": 116208,
+      "sha256": "fbf3c22ab2c893b8dacf7bcf2803f41460ffb41600dfc8f284e3907be1d74e20"
     },
     {
       "path": "build/generic-phone-mod.json",
-      "bytes": 56477,
-      "sha256": "4db6ab9d2cff7b9065133123054948e4608ad00322c8b640af5fc1aca706fe45"
+      "bytes": 104765,
+      "sha256": "aac19ae6692419083f8ecda2cacd762f84fc95ff74b8149e8932df91f4a799e0"
+    },
+    {
+      "path": "build/generic-phone-voyage-mod.json",
+      "bytes": 205629,
+      "sha256": "a87384e2da47072845608fd07e50453a151c70d4920fbf01116d05f777adf20a"
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 1452,
-      "sha256": "de6d80416583e16a6fecc06ca047ca7046ee8da3cdcc211aeff4bb072e6f710b"
+      "bytes": 425,
+      "sha256": "93912969f6eed9916d723a698817e6536b908a33cd9219d08f1b10bb4d5ea89f"
     },
     {
       "path": "CLOCK-SETUP.txt",
-      "bytes": 2986,
-      "sha256": "dd2a5cc0ac4a982a258710f3c2a5fa7cabf1f121540cdf0155c40827808e158e"
+      "bytes": 2938,
+      "sha256": "2e775585da44ab5689fef43a4d11338b41de83cc83a4a9e279d240127778640a"
     },
     {
       "path": "config/generic-phone.json",
-      "bytes": 4387,
-      "sha256": "88c443201b8e9ac7af59368e0753e2a4f26e1786d351ec48411a9d0c1a737630"
+      "bytes": 5358,
+      "sha256": "97609bb4fd099474dea51f0adb71e1e246434d8b26def6fd1429944aac62f1b6"
     },
     {
       "path": "docs/.nojekyll",
@@ -50,33 +55,33 @@
     },
     {
       "path": "docs/checklist.js",
-      "bytes": 428,
-      "sha256": "3d9d3c91456249897583204bae5241c0f91b901667e0ba90091f7588c23e67c3"
+      "bytes": 420,
+      "sha256": "07b53719b3c52cedcf03ccd48cc6912820e9c6880d97153636fa9bb97f19f64d"
     },
     {
       "path": "docs/downloads/Creator-Guide.pdf",
-      "bytes": 165202,
-      "sha256": "dfc43dad4061dc999ba083914330840ffb94f3df6e57d3271c7a7b2a9243db70"
+      "bytes": 186337,
+      "sha256": "b52888fe14f60067170c1d5a6f2c926c306d8eb9f40a82dbda71d27630f86a61"
     },
     {
-      "path": "docs/downloads/textphone-for-voyage-0.6.0.zip",
-      "bytes": 150996,
-      "sha256": "9988000a4152c312c21d91b809cd1d107ef323c19ae1fef0194528ea1eee8643"
+      "path": "docs/downloads/textphone-for-voyage-0.7.0.zip",
+      "bytes": 222791,
+      "sha256": "8d9d06e2e108fa3be9ca416c3c2812451e90c411b009d1651af325cab2521793"
     },
     {
       "path": "docs/index.html",
-      "bytes": 46260,
-      "sha256": "35c3b8bde94811c88d8292dd2d165042172c9d92b6b4f0c10a72ab8372e6a6f3"
+      "bytes": 59824,
+      "sha256": "7f56bd3fb9094319791b04130c49f0cc55bdffd082739901c7dfe76aebab1827"
     },
     {
       "path": "docs/style.css",
-      "bytes": 2409,
-      "sha256": "3c4bed144310e47fda3d3daa961129f398f237d841156fd229074127d434228d"
+      "bytes": 2648,
+      "sha256": "8f04c6877438c4c033eab725ef4fbfb043786d11969f89e7c822f5e752ee1528"
     },
     {
       "path": "documentation/guide.json",
-      "bytes": 38065,
-      "sha256": "df7b9fecaf182acbbcf683f1174f9dbf02cc821b736fd342d3ed7fafca44017a"
+      "bytes": 47646,
+      "sha256": "050d1a705cd5b4df5900fa8da9e99cdab2996287c6a8457e3dec112744d93fb8"
     },
     {
       "path": "documentation/site.json",
@@ -139,14 +144,19 @@
       "sha256": "46897df2cb11a186d5e49557c4e903db2be5ea500a3d5af11190343725fcecaf"
     },
     {
+      "path": "native/build-draft.mjs",
+      "bytes": 1394,
+      "sha256": "32015a28c7101b623eb59836eb824ecc4999a2f4ac902c598ca61aa221f81063"
+    },
+    {
       "path": "native/build-installer.mjs",
-      "bytes": 6085,
-      "sha256": "6094baf1129591e012fd76bcaea6e7b45e3b95781dd00b532c211fe59519ef11"
+      "bytes": 6058,
+      "sha256": "09a60ad66c2870ceac285d6e0d359f59690d5c97d2b7e0f7ed577215aee66977"
     },
     {
       "path": "native/build-mod.mjs",
-      "bytes": 7863,
-      "sha256": "34b8d4cd5cbcce06ac0cfadf36f2f1eb68e84303a528e16005bd9518ea7c634b"
+      "bytes": 10914,
+      "sha256": "acaf37884acd6ec6cc4eac1a90038e61124d40efb86f43ffe668dc7f3250170a"
     },
     {
       "path": "native/merge-world.mjs",
@@ -154,24 +164,34 @@
       "sha256": "245f978748b46ddbbeb3a1d2a6880deb71fa747cd521a5b8518b85ca032c9b74"
     },
     {
+      "path": "native/narrator-interface.txt",
+      "bytes": 744,
+      "sha256": "e9306d1251b572704ac776fbc616454fb2e5f32c3e4ce06df60bae50173bd46a"
+    },
+    {
       "path": "native/verify-world.mjs",
-      "bytes": 722,
-      "sha256": "b83e58345adbf250f046f81e45724aed89fb8ff467e10ab5b33a29ed90c157d8"
+      "bytes": 710,
+      "sha256": "2c0ea65948581726d1298a8eab10e129f044105ab2fa07a03c5c9388bb25ccfd"
+    },
+    {
+      "path": "native/voyage-draft-base.json",
+      "bytes": 100277,
+      "sha256": "729c0f30611a7c5bd2cfbc97f698a9763cc3f1c0867edc2c9c08929ea2d55a02"
     },
     {
       "path": "package.json",
-      "bytes": 766,
-      "sha256": "334383ad267f8906d180fa91cb023806597f0ba3853bbebaceb21e54619143f5"
+      "bytes": 840,
+      "sha256": "e58f6fde7711522578fc79e2f4fc02317efd460ca40bd2e4d42808a62af1922e"
     },
     {
       "path": "README.md",
-      "bytes": 6784,
-      "sha256": "3f50744f94c94669919d1e9e8bf987e87cb63edbbe33fad45c5f74d9fc566512"
+      "bytes": 1950,
+      "sha256": "f2613970272f7d53b99554074da39150397fb430087b480bb19bb5c0557ea512"
     },
     {
       "path": "src/merge-phone-world.mjs",
-      "bytes": 3242,
-      "sha256": "78ed6c7ea36aedeafaa8f1a717ff59fb6226e0132d86e9f1b8bf3a78916319b0"
+      "bytes": 8048,
+      "sha256": "440098e7cc7050f0b9a02a428e80e0968fada97e74bff6d3026294468e009a33"
     },
     {
       "path": "src/mod-context.mjs",
@@ -190,8 +210,8 @@
     },
     {
       "path": "src/mod-follow-through.mjs",
-      "bytes": 2757,
-      "sha256": "86bfb9880d0dcd5012363f9cb63695d27af66f7864eb6f8c1fecf8d1547bc041"
+      "bytes": 2904,
+      "sha256": "ae41bcebbf792e096ddce4e8c400e35d6fb4a3844d4c5670814d8e0540814289"
     },
     {
       "path": "src/mod-home.mjs",
@@ -205,8 +225,38 @@
     },
     {
       "path": "src/mod-services.mjs",
-      "bytes": 2736,
-      "sha256": "a70334bd91d7dd22b6676b6cdb7d96ab2d0908407277972d9eac189354f1bc01"
+      "bytes": 2773,
+      "sha256": "0d58c58f0bc168f33a45652f2b03750d7ab236a28af1662e278d62eac40edddf"
+    },
+    {
+      "path": "src/mod-workshop-capture.mjs",
+      "bytes": 832,
+      "sha256": "d27cdcf78c99dbd19c9c0ab81bedb290ecf24a33672bc04bba78a267423e46c1"
+    },
+    {
+      "path": "src/mod-workshop-context.mjs",
+      "bytes": 4015,
+      "sha256": "82be5e0fcbba6f2b68cc3d1aedf42a3d4fa855ae7106a42a6016807764c308f6"
+    },
+    {
+      "path": "src/mod-workshop-practice.mjs",
+      "bytes": 2931,
+      "sha256": "101d0a715c4e863e1aeb572b01f6b98c2411bd16e5ce07c062608179a20878c6"
+    },
+    {
+      "path": "src/mod-workshop-skill-context.mjs",
+      "bytes": 1314,
+      "sha256": "2efb2d34eca691b24e84f215ca567fa62d65295baa7a2b8fe8e6722ea44f674d"
+    },
+    {
+      "path": "src/mod-workshop-submit.mjs",
+      "bytes": 3110,
+      "sha256": "f58a22c69aa9cd43dde3f5c137e1771f997d7c080145b8ea7a5e8a1ffe6aac96"
+    },
+    {
+      "path": "src/mod-workshop.mjs",
+      "bytes": 2946,
+      "sha256": "1646247e2033b6b4e066ab40ff8bc42448c0fe78e8cf93c6f908a3e341daa452"
     },
     {
       "path": "src/phone-catalog-policy.mjs",
@@ -224,9 +274,24 @@
       "sha256": "8b1216005040da5e2af6777cf8dbea5332cd2cac60ad70bf87c62afd1c410fec"
     },
     {
+      "path": "src/workshop-bridges.mjs",
+      "bytes": 2999,
+      "sha256": "64a17e04b78edfb71429860212e0e3646d4ccc0588fafdeb064081cad3d79cfb"
+    },
+    {
+      "path": "src/workshop-protocol.mjs",
+      "bytes": 2396,
+      "sha256": "12a983275b2e73cb69c6062dd78efa8204706a69731800a4544246b55fe94c37"
+    },
+    {
+      "path": "src/workshop-session.mjs",
+      "bytes": 6298,
+      "sha256": "b5f6a9e64a9250af2ad7f3a0a4b4445a6e95b4995b5b486eb6279d839faae623"
+    },
+    {
       "path": "START-HERE.txt",
-      "bytes": 1248,
-      "sha256": "986fa5e746fbcc1f37f83f6c631364f1c5641fd76a00beb34aa6a5c667d2dcb4"
+      "bytes": 1270,
+      "sha256": "a35b59467b578ca91d481cab91ddbc9465147e5a3ec508c260c4757a5e0578ca"
     },
     {
       "path": "test/app-enablement.test.mjs",
@@ -235,33 +300,48 @@
     },
     {
       "path": "test/generic-native.test.mjs",
-      "bytes": 6371,
-      "sha256": "36e557970bc09e6c3ae52f7941d8ee9fc911acd6ba49f5ea3c9dce2561038326"
+      "bytes": 6319,
+      "sha256": "7e834c73d59dcdf000eee2819a66c7039733ce7fac8bcaf7e202ba36ae744e72"
     },
     {
       "path": "test/installer.test.mjs",
-      "bytes": 2045,
-      "sha256": "bfe4377745e4e1cd3f8e3234bee7e8622ed9dfa8eaa09b1c7f69b6850a97f632"
+      "bytes": 2197,
+      "sha256": "430e00a23a74b78f907c10e485c61b1a8878c15be9861f7af7c4bafc5b1b35d3"
     },
     {
       "path": "test/merge.test.mjs",
-      "bytes": 2612,
-      "sha256": "73213de2c37748f2334f4b1e65eb259e250a15e60b2c16f73f0f831d5f517308"
+      "bytes": 9782,
+      "sha256": "0843dc1acc565eeca3f4eee7fa79f5b6cf5718c13c75df9af86822c735956e22"
     },
     {
       "path": "test/verify-world.test.mjs",
-      "bytes": 1107,
-      "sha256": "58bbb7d170a134cbf43119130de2cb5bc83801dd7fbbec403b58242178eecfa9"
+      "bytes": 1090,
+      "sha256": "37d69a8fc6c722f4820ae34e6b9efd23945b541bc61dd75c025c8589df1e540c"
+    },
+    {
+      "path": "test/workshop-native.test.mjs",
+      "bytes": 17745,
+      "sha256": "5a6208e27c75d6811c41de638795b7bb11b635ef00b5300d297ab70ddf72984a"
+    },
+    {
+      "path": "test/workshop-protocol.test.mjs",
+      "bytes": 4299,
+      "sha256": "649e376564b7a97ed81a4697ffab33c629bdfdbff7e11e256367a82ef3b16225"
+    },
+    {
+      "path": "test/workshop-session.test.mjs",
+      "bytes": 8410,
+      "sha256": "cb561dead040e2afabac18cfce25a6548b258f32c848053f5037660689e8ad31"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "bytes": 465,
-      "sha256": "f1fb865e9c3c4e3ff9c5031492561b8382d0dad2deacdba23be0c86edf042565"
+      "bytes": 703,
+      "sha256": "368a890292789dd3895f1bcea0f6b18d52bb99ec4396cc0ffeea4c7b2265ed08"
     },
     {
       "path": "tools/build-creator-package.py",
-      "bytes": 742,
-      "sha256": "c29b5f7ff0306dc824512c7445971dbbc588f1af6366664c8a8de4bb44960d55"
+      "bytes": 811,
+      "sha256": "cedb259d22501390a96c327bb4bb43eea49bbcaa241c888397ca30c901cd3e51"
     },
     {
       "path": "tools/build-guide.py",
@@ -270,18 +350,18 @@
     },
     {
       "path": "tools/build-site.py",
-      "bytes": 4698,
-      "sha256": "0089d940b92184eba6bae30dc6729f87776e3e5e810bde09dfaff9846ddd8363"
+      "bytes": 4875,
+      "sha256": "f6c513d86e46c1ae3566351dc4077a0281148f709ab901f1ccac3c3a0cb8e2f2"
     },
     {
       "path": "tools/pdf-renderer.py",
-      "bytes": 6996,
-      "sha256": "10e062cf4549f108320ed35c774a9b6d836165dad7db514b19eeb35e1453f1a7"
+      "bytes": 8413,
+      "sha256": "162757efff8380b4ffbab18998b10952a68d548c3de311a4552d2f86f603d6d1"
     },
     {
       "path": "VERIFICATION.txt",
-      "bytes": 7774,
-      "sha256": "455a5cbb1a7a559b799d852ea45c2883fcad393b4211ce3d4a2b7cb14243e2da"
+      "bytes": 1121,
+      "sha256": "39a02a4711147827b79e2209b22cf7f36a43782eea8c00b418857e838c39a122"
     }
   ]
 }

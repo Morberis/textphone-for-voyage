@@ -16,6 +16,7 @@ export function handlePhoneServices(context, storage, effects, log) {
     context.openApp&&app.openPage?app.pages.find(page=>page.name===app.openPage):null;
   // A generated detail is model-mediated browsing within the current page.
   if(request&&request[1].toLowerCase()==='view'&&!page)return;
+  if(page?.kind==='workshop')return;
   if(page?.kind==='directory'&&(!request||request[1].toLowerCase()==='view'))return;
   phone.screen='app';phone.appId=app.id;phone.directory=null;
   const selector=app.label.toUpperCase()+'\n'+(app.summary?app.summary+'\n':'')+app.pages.map(page=>'[phone '+(page.startsActivity?'choose ':'view ')+page.name.toLowerCase()+'] '+page.name).join('\n')+'\n[phone home] Phone home';

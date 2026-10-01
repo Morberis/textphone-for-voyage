@@ -6,7 +6,8 @@
     "messages",
     "maps",
     "food",
-    "store"
+    "store",
+    "workshop"
   ],
   "apps": [
     {
@@ -117,6 +118,34 @@
       "pages": [],
       "removable": false,
       "summary": "Discover, install and remove phone apps.",
+      "enabled": true
+    },
+    {
+      "id": "workshop",
+      "label": "Workshop",
+      "preferredShortcut": "W",
+      "order": 20,
+      "summary": "Develop ability, skill and technique designs.",
+      "pages": [
+        {
+          "name": "Ability creation",
+          "kind": "workshop",
+          "workshopKind": "ability",
+          "guidance": "Design an ability suited to the character's established power source, level and world scale. Keep costs, range, duration and counterplay understandable."
+        },
+        {
+          "name": "Skill creation",
+          "kind": "workshop",
+          "workshopKind": "skill",
+          "guidance": "Design a trainable skill with a clear governing world attribute, ordinary scope and a useful path of improvement through XP and levels."
+        },
+        {
+          "name": "Technique creation",
+          "kind": "workshop",
+          "workshopKind": "technique",
+          "guidance": "Design a practical technique built from established skills or powers, offered through native ability purchase."
+        }
+      ],
       "enabled": true
     }
   ]
